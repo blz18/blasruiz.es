@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blas Ruiz — Comunicación visual para empresas industriales</title>
+<meta name="description" content="Diseño y produzco la comunicación visual de empresas industriales. Y dejo montado el sistema para que tu equipo la repita, y la próxima vez sea un ajuste y no un proyecto.">
+<meta name="theme-color" content="#f1f1f0">
+<link rel="canonical" href="https://blasruiz.es/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icono-180.png">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://blasruiz.es/">
+<meta property="og:site_name" content="Blas Ruiz">
+<meta property="og:title" content="Blas Ruiz — Comunicación visual para empresas industriales">
+<meta property="og:description" content="La pieza se acaba. El sistema se queda. 25 años de oficio en producción visual.">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://blasruiz.es/og-blasruiz.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Diseño y produzco la comunicación visual de empresas industriales.">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Onest:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   blasruiz.es — home v1
+   Marca: 01_ABOUT ME/referencia/brand-blas.md
+   Copy:  01_ABOUT ME/Negocio/blasruiz.es/borrador-home.md
+   ========================================================================== */
+
+:root{
+  --tinta:#333333;
+  --papel:#f1f1f0;
+  --papel-sutil:#fafafa;
+  --gris:#a3a3a3;
+  --naranja:#ff8666;
+  --azul:#00cfcf;
+  --verde:#71db6b;
+
+  --linea:rgba(51,51,51,.14);
+  --linea-inv:rgba(241,241,240,.18);
+
+  --titulo:'Outfit','Trebuchet MS',system-ui,sans-serif;
+  --cuerpo:'Onest',Arial,system-ui,sans-serif;
+  --mono:'DM Mono',ui-monospace,'SF Mono',Menlo,monospace;
+
+  --marco:clamp(1.25rem,5vw,5rem);
+  --ancho:76rem;
+  --aire:clamp(5rem,11vw,10rem);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html:focus-within{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--papel);
+  color:var(--tinta);
+  font-family:var(--cuerpo);
+  font-size:clamp(1rem,.95rem + .25vw,1.125rem);
+  line-height:1.62;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+
+h1,h2,h3,h4{
+  font-family:var(--titulo);
+  font-weight:500;
+  line-height:1.06;
+  letter-spacing:-.028em;
+  margin:0;
+  text-wrap:balance;
+}
+p{margin:0 0 1.15em}
+p:last-child{margin-bottom:0}
+
+.env{width:100%;max-width:var(--ancho);margin-inline:auto;padding-inline:var(--marco)}
+.seccion{padding-block:var(--aire)}
+.medida{max-width:38ch}
+.medida-l{max-width:52ch}
+
+/* --- etiqueta de sección ------------------------------------------------ */
+.rotulo{
+  font-family:var(--mono),var(--cuerpo);
+  font-size:.72rem;
+  font-weight:500;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--gris);
+  display:flex;
+  align-items:center;
+  gap:.9rem;
+  margin:0 0 2.75rem;
+}
+.rotulo::after{content:"";flex:1;height:1px;background:var(--linea)}
+.inverso .rotulo{color:rgba(241,241,240,.55)}
+.inverso .rotulo::after{background:var(--linea-inv)}
+
+/* --- botones ------------------------------------------------------------ */
+.btn{
+  --bg:var(--tinta); --fg:var(--papel);
+  display:inline-flex;align-items:center;gap:.7rem;
+  background:var(--bg);color:var(--fg);
+  font-family:var(--cuerpo);font-size:1rem;font-weight:500;
+  letter-spacing:-.01em;line-height:1;
+  padding:1.1rem 1.6rem;border:1px solid var(--bg);border-radius:2px;
+  text-decoration:none;cursor:pointer;
+  transition:background .28s ease,color .28s ease,border-color .28s ease,transform .28s ease;
+}
+.btn .flecha{transition:transform .28s ease}
+.btn:hover{--bg:var(--naranja);--fg:var(--tinta);border-color:var(--naranja)}
+.btn:hover .flecha{transform:translateX(4px)}
+.btn--fantasma{--bg:transparent;--fg:var(--tinta);border-color:var(--linea)}
+.btn--fantasma:hover{--bg:var(--tinta);--fg:var(--papel);border-color:var(--tinta)}
+.inverso .btn{--bg:var(--papel);--fg:var(--tinta)}
+.inverso .btn:hover{--bg:var(--naranja);--fg:var(--tinta)}
+.btn--sm{padding:.72rem 1.1rem;font-size:.9rem}
+
+.enlace{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-weight:500;text-decoration:none;
+  padding-bottom:.28rem;
+  border-bottom:1px solid var(--naranja);
+  transition:gap .25s ease,border-color .25s ease;
+}
+.enlace:hover{gap:.9rem;border-color:var(--tinta)}
+.inverso .enlace:hover{border-color:var(--papel)}
+
+:where(a,button):focus-visible{
+  outline:2px solid var(--naranja);
+  outline-offset:3px;
+  border-radius:2px;
+}
+
+/* --- cabecera ----------------------------------------------------------- */
+.cabecera{
+  position:sticky;top:0;z-index:60;
+  background:rgba(241,241,240,.82);
+  backdrop-filter:saturate(1.6) blur(14px);
+  -webkit-backdrop-filter:saturate(1.6) blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s ease,background .3s ease;
+}
+.cabecera.pegada{border-bottom-color:var(--linea)}
+.cabecera .env{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1.5rem;min-height:5rem;
+}
+.marca{display:flex;align-items:center;gap:.85rem;text-decoration:none}
+.marca svg{width:26px;height:26px;flex:none}
+.marca b{font-family:var(--titulo);font-size:1.06rem;font-weight:600;letter-spacing:-.02em}
+.marca span{color:var(--gris);font-size:1.06rem;font-weight:300;letter-spacing:-.02em;font-family:var(--titulo)}
+
+.nav{display:flex;align-items:center;gap:2rem}
+.nav a:not(.btn){
+  text-decoration:none;font-size:.95rem;font-weight:400;
+  color:var(--tinta);position:relative;padding-block:.2rem;
+}
+.nav a:not(.btn)::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:0;
+  background:var(--naranja);transition:width .28s ease;
+}
+.nav a:not(.btn):hover::after{width:100%}
+@media (max-width:52rem){.nav .oculta-movil{display:none}}
+@media (max-width:30rem){.marca span{display:none}}
+
+/* --- hero --------------------------------------------------------------- */
+.hero{padding-block:clamp(4.5rem,10vw,9rem) clamp(4rem,8vw,7rem);position:relative;overflow:hidden}
+.hero .env{position:relative;z-index:2}
+.hero__firma{
+  font-family:var(--mono),var(--cuerpo);
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gris);margin:0 0 clamp(2rem,4vw,3.25rem);
+  display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;
+}
+.punto{width:6px;height:6px;border-radius:50%;background:var(--naranja);flex:none}
+
+.hero h1{
+  font-size:clamp(2.6rem,1.4rem + 5.4vw,5.4rem);
+  font-weight:500;
+  max-width:19ch;
+  margin-bottom:clamp(1.5rem,3vw,2.25rem);
+}
+.hero h1 em{
+  font-style:normal;
+  -webkit-box-decoration-break:clone;box-decoration-break:clone;
+  background-image:linear-gradient(var(--naranja),var(--naranja));
+  background-repeat:no-repeat;
+  background-position:0 92%;
+  background-size:0 .1em;
+  animation:subraya 1s cubic-bezier(.22,1,.36,1) .5s forwards;
+}
+@keyframes subraya{to{background-size:100% .1em}}
+
+.hero__sub{
+  font-size:clamp(1.1rem,1rem + .6vw,1.45rem);
+  line-height:1.5;max-width:44ch;color:#4a4a4a;font-weight:300;
+  margin-bottom:clamp(2.25rem,4vw,3rem);
+}
+.hero__sub b{font-weight:500;color:var(--tinta)}
+.hero__acciones{display:flex;flex-wrap:wrap;gap:1rem;align-items:center}
+.hero__nota{font-size:.9rem;color:var(--gris)}
+
+.hero__marca-agua{
+  position:absolute;right:-6%;top:50%;transform:translateY(-50%);
+  width:min(46vw,34rem);opacity:.05;z-index:1;pointer-events:none;
+}
+@media (max-width:52rem){.hero__marca-agua{display:none}}
+
+/* --- barra de credenciales --------------------------------------------- */
+.credenciales{border-block:1px solid var(--linea);background:var(--papel-sutil)}
+.credenciales .env{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));
+  gap:0;
+}
+.credencial{padding:2.25rem 0 2.25rem 1.75rem;border-left:1px solid var(--linea)}
+.credencial:first-child{padding-left:0;border-left:0}
+.credencial dt{
+  font-family:var(--titulo);font-size:clamp(1.9rem,1.4rem + 1.4vw,2.7rem);
+  font-weight:500;letter-spacing:-.03em;line-height:1;margin-bottom:.5rem;
+}
+.credencial dd{margin:0;font-size:.9rem;color:#5c5c5c;line-height:1.4;max-width:22ch}
+@media (max-width:44rem){
+  .credenciales .env{grid-template-columns:1fr 1fr}
+  .credencial{padding:1.5rem 0 1.5rem 1.25rem}
+  .credencial:nth-child(odd){padding-left:0;border-left:0}
+  .credencial:nth-child(n+3){border-top:1px solid var(--linea)}
+}
+
+/* --- bloques inversos --------------------------------------------------- */
+.inverso{background:var(--tinta);color:var(--papel)}
+.inverso h2,.inverso h3{color:var(--papel)}
+
+/* --- el problema -------------------------------------------------------- */
+.problema h2{
+  font-size:clamp(1.9rem,1.4rem + 2vw,3.2rem);
+  max-width:16ch;margin-bottom:clamp(3rem,6vw,4.5rem);
+}
+.senales{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));
+  gap:0;border-top:1px solid var(--linea-inv);
+}
+.senal{
+  padding:2.5rem 2rem 2.5rem 0;
+  border-bottom:1px solid var(--linea-inv);
+}
+.senal + .senal{padding-left:2rem;border-left:1px solid var(--linea-inv)}
+.senal__n{
+  font-family:var(--mono),var(--cuerpo);font-size:.72rem;letter-spacing:.18em;
+  color:var(--naranja);display:block;margin-bottom:1.25rem;
+}
+.senal p{
+  font-family:var(--titulo);font-weight:300;
+  font-size:clamp(1.15rem,1rem + .7vw,1.5rem);
+  line-height:1.34;letter-spacing:-.02em;
+}
+@media (max-width:44rem){
+  .senal,.senal + .senal{padding:2rem 0;padding-left:0;border-left:0}
+}
+.problema__cierre{
+  margin-top:clamp(3rem,6vw,4.5rem);
+  font-size:clamp(1.15rem,1rem + .7vw,1.55rem);
+  font-family:var(--titulo);font-weight:300;line-height:1.4;
+  letter-spacing:-.02em;max-width:34ch;
+}
+.problema__cierre b{color:var(--naranja);font-weight:400}
+
+/* --- la diferencia ------------------------------------------------------ */
+.diferencia h2{
+  font-size:clamp(2.1rem,1.5rem + 2.4vw,3.7rem);
+  max-width:14ch;margin-bottom:clamp(2.5rem,5vw,3.5rem);
+}
+.comparativa{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(1.25rem,3vw,2rem);margin-bottom:clamp(2.5rem,5vw,3.5rem);
+}
+@media (max-width:44rem){.comparativa{grid-template-columns:1fr}}
+.opcion{
+  border:1px solid var(--linea);border-radius:3px;
+  padding:clamp(1.75rem,3vw,2.5rem);background:var(--papel-sutil);
+}
+.opcion--destacada{
+  border-color:var(--tinta);background:var(--papel);
+  box-shadow:10px 10px 0 rgba(255,134,102,.9);
+}
+.opcion h3{
+  font-size:1.28rem;font-weight:600;margin-bottom:1rem;
+  display:flex;align-items:baseline;gap:.7rem;
+}
+.opcion h3 span{
+  font-family:var(--mono),var(--cuerpo);font-size:.7rem;letter-spacing:.16em;
+  color:var(--gris);font-weight:400;
+}
+.opcion--destacada h3 span{color:var(--naranja)}
+.opcion p{font-size:1rem;color:#4a4a4a}
+.opcion--destacada p{color:var(--tinta)}
+.opcion ul{margin:1rem 0 0;padding:0;list-style:none;font-size:.95rem}
+.opcion li{padding-left:1.3rem;position:relative;margin-bottom:.45rem;color:#4a4a4a}
+.opcion li::before{content:"";position:absolute;left:0;top:.62em;width:.55rem;height:1px;background:var(--naranja)}
+
+.diferencia__matiz{
+  max-width:56ch;color:#4a4a4a;
+  margin-bottom:clamp(2.5rem,5vw,3.5rem);
+}
+.diferencia__matiz b{color:var(--tinta);font-weight:500}
+.cita{
+  border-left:2px solid var(--naranja);
+  padding-left:clamp(1.25rem,3vw,2rem);
+  font-family:var(--titulo);font-weight:300;
+  font-size:clamp(1.15rem,1rem + .7vw,1.6rem);
+  line-height:1.42;letter-spacing:-.02em;max-width:46ch;
+}
+
+/* --- caso ancla --------------------------------------------------------- */
+.caso{background:var(--papel-sutil);border-block:1px solid var(--linea)}
+.caso__cab{
+  display:grid;grid-template-columns:1.15fr .85fr;
+  gap:clamp(2rem,5vw,4rem);align-items:end;
+  margin-bottom:clamp(3rem,6vw,4.5rem);
+}
+@media (max-width:52rem){.caso__cab{grid-template-columns:1fr;align-items:start}}
+.caso h2{font-size:clamp(2rem,1.5rem + 2.2vw,3.4rem);max-width:15ch}
+.caso__intro{color:#4a4a4a;max-width:42ch}
+
+.cifras{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));
+  gap:0;border-top:1px solid var(--linea);margin-bottom:clamp(2.5rem,5vw,3.5rem);
+}
+.cifra{padding:2rem 1.5rem 2rem 0}
+.cifra + .cifra{padding-left:1.5rem;border-left:1px solid var(--linea)}
+.cifra b{
+  display:block;font-family:var(--titulo);font-weight:500;
+  font-size:clamp(2.2rem,1.6rem + 2vw,3.4rem);
+  letter-spacing:-.04em;line-height:1;margin-bottom:.6rem;
+}
+.cifra span{font-size:.88rem;color:#5c5c5c;line-height:1.4;display:block;max-width:20ch}
+.cifra--hallazgo b{color:var(--naranja)}
+@media (max-width:44rem){
+  .cifra,.cifra + .cifra{padding:1.5rem 0;padding-left:0;border-left:0;border-bottom:1px solid var(--linea)}
+  .cifra:last-child{border-bottom:0}
+}
+.caso__hallazgo{
+  display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;
+  padding-top:clamp(2rem,4vw,2.5rem);border-top:1px solid var(--linea);
+}
+@media (max-width:52rem){.caso__hallazgo{grid-template-columns:1fr;gap:1.75rem}}
+.caso__hallazgo p{font-size:1.05rem;color:#4a4a4a;max-width:52ch}
+
+/* --- servicios ---------------------------------------------------------- */
+.servicios h2{
+  font-size:clamp(2rem,1.5rem + 2.2vw,3.4rem);
+  max-width:14ch;margin-bottom:1.25rem;
+}
+.servicios__intro{color:#4a4a4a;max-width:44ch;margin-bottom:clamp(3rem,6vw,4.5rem)}
+.rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:clamp(1.25rem,2.5vw,1.75rem)}
+.servicio{
+  border:1px solid var(--linea);border-radius:3px;
+  padding:clamp(1.75rem,3vw,2.25rem);
+  display:flex;flex-direction:column;gap:1rem;
+  background:var(--papel);
+  transition:border-color .3s ease,transform .3s ease,box-shadow .3s ease;
+}
+.servicio:hover{border-color:var(--tinta);transform:translateY(-3px);box-shadow:0 12px 30px rgba(51,51,51,.07)}
+.servicio__n{
+  font-family:var(--mono),var(--cuerpo);font-size:.72rem;letter-spacing:.18em;
+  color:var(--gris);
+}
+.servicio h3{font-size:1.32rem;font-weight:600;letter-spacing:-.02em;line-height:1.2}
+.servicio p{font-size:.98rem;color:#4a4a4a;flex:1}
+.servicio .enlace{font-size:.92rem;align-self:flex-start}
+.servicio--acento{border-color:var(--tinta)}
+.servicio--acento .servicio__n{color:var(--naranja)}
+
+/* --- quién soy ---------------------------------------------------------- */
+.bio{background:var(--papel-sutil);border-block:1px solid var(--linea)}
+.bio__grid{
+  display:grid;grid-template-columns:.8fr 1.2fr;
+  gap:clamp(2rem,6vw,5rem);align-items:start;
+}
+@media (max-width:52rem){.bio__grid{grid-template-columns:1fr}}
+.bio h2{font-size:clamp(1.9rem,1.4rem + 2.1vw,3rem);margin-bottom:1.75rem}
+.bio__texto p{color:#4a4a4a;max-width:54ch}
+.bio__texto p b{color:var(--tinta);font-weight:500}
+.retrato{
+  aspect-ratio:4/5;border:1px solid var(--linea);border-radius:3px;
+  background:
+    repeating-linear-gradient(-45deg,transparent 0 11px,rgba(51,51,51,.045) 11px 12px),
+    var(--papel);
+  display:flex;align-items:flex-end;padding:1.25rem;
+}
+.retrato span{
+  font-family:var(--mono),var(--cuerpo);font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gris);
+}
+
+/* --- clientes ----------------------------------------------------------- */
+.clientes h2{font-size:clamp(1.6rem,1.3rem + 1.4vw,2.3rem);max-width:22ch;margin-bottom:clamp(2.5rem,5vw,3.5rem)}
+.sectores{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:0;border-top:1px solid var(--linea)}
+.sector{padding:1.75rem 1.5rem 1.75rem 0;border-bottom:1px solid var(--linea)}
+.sector + .sector{padding-left:1.5rem;border-left:1px solid var(--linea)}
+.sector b{display:block;font-family:var(--titulo);font-weight:500;font-size:1.05rem;letter-spacing:-.015em;margin-bottom:.4rem}
+.sector span{font-size:.88rem;color:#5c5c5c}
+@media (max-width:44rem){.sector,.sector + .sector{padding:1.4rem 0;padding-left:0;border-left:0}}
+
+/* --- cierre ------------------------------------------------------------- */
+.cierre{text-align:left}
+.cierre h2{font-size:clamp(2.3rem,1.6rem + 3vw,4.4rem);max-width:13ch;margin-bottom:1.75rem}
+.cierre p{
+  font-size:clamp(1.05rem,1rem + .45vw,1.35rem);font-weight:300;
+  line-height:1.5;max-width:46ch;color:rgba(241,241,240,.78);
+  margin-bottom:clamp(2.25rem,4vw,3rem);
+}
+.cierre__acciones{display:flex;flex-wrap:wrap;gap:1rem 1.75rem;align-items:center}
+.cierre__nota{font-size:.9rem;color:rgba(241,241,240,.5)}
+
+/* --- pie ---------------------------------------------------------------- */
+.pie{padding-block:3rem;border-top:1px solid var(--linea)}
+.pie .env{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:space-between;align-items:center}
+.pie small{font-size:.85rem;color:var(--gris)}
+.pie nav{display:flex;gap:1.5rem;flex-wrap:wrap}
+.pie nav a{font-size:.85rem;text-decoration:none;color:#5c5c5c}
+.pie nav a:hover{color:var(--tinta)}
+
+/* --- aparición ---------------------------------------------------------- */
+.aparece{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.aparece.visible{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html:focus-within{scroll-behavior:auto}
+  .aparece{opacity:1;transform:none;transition:none}
+  .hero h1 em{animation:none;background-size:100% .1em}
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+
+@media print{
+  .cabecera,.hero__marca-agua{display:none}
+  body{background:#fff}
+  .inverso{background:#fff;color:#333}
+}
+</style>
+</head>
+<body>
+
+<!-- ====================== CABECERA ====================== -->
+<header class="cabecera" id="cabecera">
+  <div class="env">
+    <a class="marca" href="#inicio" aria-label="Blas Ruiz — inicio">
+      <svg viewBox="0 0 394 394" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path fill="#333333" d="M70.41,354c-23.73,0-43.04-19.31-43.04-43.04V83.04c0-23.73,19.31-43.04,43.04-43.04h175.21c51.76,0,94.71,41.23,95.73,91.92.33,16.22-3.54,32.27-11.19,46.42l-2.82,5.22,4.61,3.74c22.37,18.18,35.01,45.13,34.68,73.95-.59,51.14-43.52,92.75-95.69,92.75H70.41ZM88.82,298.87h177.63c21.35,0,38.73-17.38,38.73-38.73s-17.38-38.73-38.73-38.73H88.82v77.46ZM88.82,167.36h155.08c19.86,0,36.02-16.16,36.02-36.02s-16.16-36.02-36.02-36.02H88.82v72.05Z"/>
+      </svg>
+      <b>Blas Ruiz</b><span>· Comunicación visual</span>
+    </a>
+
+    <nav class="nav" aria-label="Navegación principal">
+      <a class="oculta-movil" href="#caso">Casos</a>
+      <a class="oculta-movil" href="#servicios">Servicios</a>
+      <a class="oculta-movil" href="#bio">Sobre mí</a>
+      <a class="btn btn--sm" href="#contacto">
+        Hablemos <span class="flecha" aria-hidden="true">→</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+
+  <!-- ====================== HERO ====================== -->
+  <section class="hero">
+    <svg class="hero__marca-agua" viewBox="0 0 394 394" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <path fill="#333333" d="M70.41,354c-23.73,0-43.04-19.31-43.04-43.04V83.04c0-23.73,19.31-43.04,43.04-43.04h175.21c51.76,0,94.71,41.23,95.73,91.92.33,16.22-3.54,32.27-11.19,46.42l-2.82,5.22,4.61,3.74c22.37,18.18,35.01,45.13,34.68,73.95-.59,51.14-43.52,92.75-95.69,92.75H70.41ZM88.82,298.87h177.63c21.35,0,38.73-17.38,38.73-38.73s-17.38-38.73-38.73-38.73H88.82v77.46ZM88.82,167.36h155.08c19.86,0,36.02-16.16,36.02-36.02s-16.16-36.02-36.02-36.02H88.82v72.05Z"/>
+    </svg>
+
+    <div class="env">
+      <p class="hero__firma"><span class="punto" aria-hidden="true"></span> Diseño · Producción · Automatización</p>
+
+      <h1>Diseño y produzco la comunicación visual de <em>empresas industriales</em>.</h1>
+
+      <p class="hero__sub">Y dejo montado el sistema para que tu equipo la repita, y la próxima vez sea un ajuste y no un proyecto. <b>25 años de oficio.</b></p>
+
+      <div class="hero__acciones">
+        <a class="btn" href="#contacto">Cuéntame qué tienes atascado <span class="flecha" aria-hidden="true">→</span></a>
+        <a class="btn btn--fantasma" href="#caso">Ver un caso real</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== CREDENCIALES ====================== -->
+  <section class="credenciales" aria-label="Datos de trayectoria">
+    <dl class="env">
+      <div class="credencial">
+        <dt>25</dt>
+        <dd>años de oficio, entre imprenta, agencia y estudio propio</dd>
+      </div>
+      <div class="credencial">
+        <dt>2013</dt>
+        <dd>trabajando por cuenta propia, sin intermediarios</dd>
+      </div>
+      <div class="credencial">
+        <dt>B2B</dt>
+        <dd>industria, distribución y software especializado</dd>
+      </div>
+      <div class="credencial">
+        <dt>1</dt>
+        <dd>interlocutor: el que diseña es el que produce</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- ====================== EL PROBLEMA ====================== -->
+  <section class="seccion inverso problema" id="problema">
+    <div class="env">
+      <p class="rotulo aparece">01 · El problema</p>
+      <h2 class="aparece">Si algo de esto te suena, sigue leyendo</h2>
+
+      <div class="senales">
+        <div class="senal aparece">
+          <span class="senal__n">Señal 01</span>
+          <p>La feria de septiembre se come agosto. Todos los años. Y todos los años se hace de cero.</p>
+        </div>
+        <div class="senal aparece">
+          <span class="senal__n">Señal 02</span>
+          <p>Cada comercial enseña una presentación distinta. Todas llevan vuestro logo y ninguna se parece a la anterior.</p>
+        </div>
+        <div class="senal aparece">
+          <span class="senal__n">Señal 03</span>
+          <p>Sacáis producto nuevo y la ficha tarda tres semanas, porque nadie encuentra el archivo del que salió la anterior.</p>
+        </div>
+      </div>
+
+      <p class="problema__cierre aparece">No es un problema de diseño. Es un problema de proceso — <b>por eso contratar más diseño no lo arregla.</b></p>
+    </div>
+  </section>
+
+  <!-- ====================== LA DIFERENCIA ====================== -->
+  <section class="seccion diferencia" id="diferencia">
+    <div class="env">
+      <p class="rotulo aparece">02 · La diferencia</p>
+      <h2 class="aparece">La pieza se acaba. El sistema se queda.</h2>
+
+      <div class="comparativa">
+        <article class="opcion aparece">
+          <h3>El encargo normal <span>OPCIÓN A</span></h3>
+          <p>Puedo entregarte el catálogo actualizado. Es lo normal, y es lo que hace todo el mundo.</p>
+          <ul>
+            <li>Recibes la pieza terminada</li>
+            <li>La temporada que viene, vuelves a empezar</li>
+          </ul>
+        </article>
+
+        <article class="opcion opcion--destacada aparece">
+          <h3>El encargo con sistema <span>OPCIÓN B</span></h3>
+          <p>O puedo entregarte el catálogo actualizado <b>más el proceso que lo actualiza</b>: la plantilla, la nomenclatura, el script y las instrucciones para volver a lanzarlo la temporada que viene.</p>
+          <ul>
+            <li>Tarda algo más la primera vez</li>
+            <li>La siguiente es un ajuste, no un proyecto</li>
+          </ul>
+        </article>
+      </div>
+
+      <p class="diferencia__matiz aparece">Eso no significa que desaparezca. Cada temporada hay referencias nuevas, artículos que cambian de nombre, productos que se dejan de fabricar y decisiones que alguien tiene que tomar. <b>Para eso sigo estando.</b> Lo que se acaba es volver a empezar de cero cada vez.</p>
+
+      <blockquote class="cita aparece">
+        Trabajo así porque llevo 25 años viendo rehacer lo mismo cada temporada. El oficio está en montar el sistema y en saber qué tocar cuando algo cambia, no en teclear lo que ya estaba decidido.
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ====================== CASO ANCLA ====================== -->
+  <section class="seccion caso" id="caso">
+    <div class="env">
+      <p class="rotulo aparece">03 · Caso de estudio</p>
+
+      <div class="caso__cab">
+        <h2 class="aparece">Cuando el problema no está donde te dicen que está</h2>
+        <p class="caso__intro aparece">Una distribuidora industrial me pasa la actualización de precios de su catálogo de producto. Casi 500 referencias repartidas en ocho documentos maquetados. Cada temporada, alguien se sienta a teclear precios uno por uno.</p>
+      </div>
+
+      <div class="cifras">
+        <div class="cifra aparece"><b>500</b><span>referencias de producto en el catálogo</span></div>
+        <div class="cifra aparece"><b>8</b><span>documentos maquetados enlazados como libro</span></div>
+        <div class="cifra aparece"><b>191</b><span>celdas actualizadas en una sola pasada</span></div>
+        <div class="cifra cifra--hallazgo aparece"><b>51</b><span>duplicados en la hoja maestra del cliente que nadie había visto</span></div>
+      </div>
+
+      <div class="caso__hallazgo aparece">
+        <p>El trabajo de verdad no fue el script. Fue decidir qué <em>no</em> automatizar: los precios en conflicto salieron de la pasada automática y se pasaron a revisión con el cliente. Un precio inventado por un ordenador que llega impreso a un instalador cuesta mucho más que tres celdas pendientes.</p>
+        <a class="enlace" href="#">Cómo se hizo <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== SERVICIOS ====================== -->
+  <section class="seccion servicios" id="servicios">
+    <div class="env">
+      <p class="rotulo aparece">04 · Formas de trabajar juntos</p>
+      <h2 class="aparece">Tres maneras de empezar</h2>
+      <p class="servicios__intro aparece">Según dónde esté el atasco: en la pieza, en el proceso que la produce o en las reglas que la definen.</p>
+
+      <div class="rejilla">
+        <article class="servicio servicio--acento aparece">
+          <span class="servicio__n">01</span>
+          <h3>Producción con sistema montado</h3>
+          <p>El encargo de siempre —catálogo, fichas, identidad, piezas de feria— pero entregado con el proceso documentado para que tu equipo lo repita sin esperar a nadie.</p>
+          <a class="enlace" href="#contacto">Hablemos <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="servicio aparece">
+          <span class="servicio__n">02</span>
+          <h3>Diagnóstico de producción visual</h3>
+          <p>Dos semanas mirando cómo produce tu equipo de verdad: entrevistas, inventario de herramientas, diagrama del proceso real. Sales con un plan priorizado y lo automatizable identificado y presupuestado.</p>
+          <a class="enlace" href="#contacto">Ver el alcance <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="servicio aparece">
+          <span class="servicio__n">03</span>
+          <h3>Manual de marca legible por una IA</h3>
+          <p>Si ya generáis contenido con IA y cada salida se aleja un poco más de vuestra identidad: traduzco vuestro manual a reglas explícitas y valores estructurados que la IA no puede malinterpretar.</p>
+          <a class="enlace" href="#contacto">Ver el alcance <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== QUIÉN SOY ====================== -->
+  <section class="seccion bio" id="bio">
+    <div class="env bio__grid">
+      <div class="retrato aparece" role="img" aria-label="Espacio reservado para retrato de trabajo">
+        <span>Pendiente · foto de trabajo</span>
+      </div>
+
+      <div class="bio__texto">
+        <p class="rotulo aparece">05 · Quién soy</p>
+        <h2 class="aparece">Vengo de cuando el error se veía al abrir la caja de la imprenta</h2>
+        <div class="aparece">
+          <p>Empecé en 2000 en una tienda de regalos promocionales, cortando vinilo y estampando camisetas. Luego doce años de agencia: campañas, packaging, identidad, escenografías de evento. Desde 2013, por mi cuenta.</p>
+          <p><b>Sé lo que se rompe entre el archivo y el resultado final porque he estado en las dos puntas.</b> Eso no se aprende en pantalla.</p>
+          <p>Y cada vez que mi oficio ha cambiado de herramientas, he llegado antes. En 2007 fui yo quien formó a mi departamento en la migración a Adobe, siendo el que menos formación reglada tenía del equipo. Hoy hago lo mismo con la IA: no la uso para producir más rápido y ya está, la uso para construir las herramientas que producen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== CLIENTES ====================== -->
+  <section class="seccion clientes" aria-labelledby="clientes-t">
+    <div class="env">
+      <p class="rotulo aparece">06 · Con quién trabajo</p>
+      <h2 id="clientes-t" class="aparece">Empresas donde la producción visual es una parte del trabajo, no el trabajo</h2>
+
+      <div class="sectores">
+        <div class="sector aparece"><b>Distribución industrial</b><span>Catálogo técnico, tarifas, fichas de producto</span></div>
+        <div class="sector aparece"><b>Software B2B</b><span>Interfaz para datos densos y usuario técnico</span></div>
+        <div class="sector aparece"><b>Equipamiento y energía</b><span>Identidad, documentación y piezas de feria</span></div>
+        <div class="sector aparece"><b>Sector social</b><span>Comunicación pública y accesibilidad visual</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== CIERRE ====================== -->
+  <section class="seccion inverso cierre" id="contacto">
+    <div class="env">
+      <p class="rotulo aparece">07 · Siguiente paso</p>
+      <h2 class="aparece">¿Hablamos quince minutos?</h2>
+      <p class="aparece">Sin presupuesto ni propuesta de por medio. Me cuentas qué se atasca y te digo si es algo que yo pueda resolver — y si no lo es, también.</p>
+      <div class="cierre__acciones aparece">
+        <a class="btn" href="#">Reservar llamada de 15 min <span class="flecha" aria-hidden="true">→</span></a>
+        <span class="cierre__nota">Videollamada · sin compromiso</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ====================== PIE ====================== -->
+<footer class="pie">
+  <div class="env">
+    <small>© <span id="anyo">2026</span> Blas Ruiz · Diseño y producción visual</small>
+    <nav aria-label="Enlaces del pie">
+      <a href="#caso">Casos</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#bio">Sobre mí</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  document.getElementById('anyo').textContent = new Date().getFullYear();
+
+  /* borde de la cabecera al hacer scroll */
+  var cabecera = document.getElementById('cabecera');
+  var marcaScroll = function(){
+    cabecera.classList.toggle('pegada', window.scrollY > 8);
+  };
+  marcaScroll();
+  window.addEventListener('scroll', marcaScroll, {passive:true});
+
+  /* aparición progresiva */
+  var elementos = document.querySelectorAll('.aparece');
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    elementos.forEach(function(el){ el.classList.add('visible'); });
+    return;
+  }
+
+  var observador = new IntersectionObserver(function(entradas){
+    entradas.forEach(function(entrada){
+      if (!entrada.isIntersecting) return;
+      var hermanos = Array.prototype.slice.call(
+        entrada.target.parentNode.querySelectorAll(':scope > .aparece')
+      );
+      var retardo = Math.min(hermanos.indexOf(entrada.target), 5) * 80;
+      setTimeout(function(){ entrada.target.classList.add('visible'); }, Math.max(retardo, 0));
+      observador.unobserve(entrada.target);
+    });
+  }, {rootMargin:'0px 0px -12% 0px', threshold:0.08});
+
+  elementos.forEach(function(el){ observador.observe(el); });
+})();
+</script>
+
+</body>
+</html>
