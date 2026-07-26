@@ -391,14 +391,11 @@ p:last-child{margin-bottom:0}
 .bio__texto p b{color:var(--tinta);font-weight:500}
 .retrato{
   aspect-ratio:4/5;border:1px solid var(--linea);border-radius:3px;
-  background:
-    repeating-linear-gradient(-45deg,transparent 0 11px,rgba(51,51,51,.045) 11px 12px),
-    var(--papel);
-  display:flex;align-items:flex-end;padding:1.25rem;
+  overflow:hidden;background:var(--papel-sutil);
 }
-.retrato span{
-  font-family:var(--mono),var(--cuerpo);font-size:.7rem;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--gris);
+.retrato img{
+  width:100%;height:100%;object-fit:cover;object-position:center -118%;
+  transform:scale(1.4);
 }
 
 /* --- clientes ----------------------------------------------------------- */
@@ -601,8 +598,8 @@ p:last-child{margin-bottom:0}
   <section class="seccion servicios" id="servicios">
     <div class="env">
       <p class="rotulo aparece">04 · Formas de trabajar juntos</p>
-      <h2 class="aparece">Tres maneras de empezar</h2>
-      <p class="servicios__intro aparece">Según dónde esté el atasco: en la pieza, en el proceso que la produce o en las reglas que la definen.</p>
+      <h2 class="aparece">Dos maneras de empezar</h2>
+      <p class="servicios__intro aparece">Según dónde esté el atasco: en la pieza que hay que producir o en las reglas que la definen.</p>
 
       <div class="rejilla">
         <article class="servicio servicio--acento aparece">
@@ -614,13 +611,6 @@ p:last-child{margin-bottom:0}
 
         <article class="servicio aparece">
           <span class="servicio__n">02</span>
-          <h3>Diagnóstico de producción visual</h3>
-          <p>Dos semanas mirando cómo produce tu equipo de verdad: entrevistas, inventario de herramientas, diagrama del proceso real. Sales con un plan priorizado y lo automatizable identificado y presupuestado.</p>
-          <a class="enlace" href="#contacto">Ver el alcance <span aria-hidden="true">→</span></a>
-        </article>
-
-        <article class="servicio aparece">
-          <span class="servicio__n">03</span>
           <h3>Manual de marca legible por una IA</h3>
           <p>Si ya generáis contenido con IA y cada salida se aleja un poco más de vuestra identidad: traduzco vuestro manual a reglas explícitas y valores estructurados que la IA no puede malinterpretar.</p>
           <a class="enlace" href="#contacto">Ver el alcance <span aria-hidden="true">→</span></a>
@@ -632,9 +622,10 @@ p:last-child{margin-bottom:0}
   <!-- ====================== QUIÉN SOY ====================== -->
   <section class="seccion bio" id="bio">
     <div class="env bio__grid">
-      <div class="retrato aparece" role="img" aria-label="Espacio reservado para retrato de trabajo">
-        <span>Pendiente · foto de trabajo</span>
-      </div>
+      <figure class="retrato aparece">
+        <img src="/foto-blas.png" width="1473" height="1963"
+             alt="Retrato de Blas Ruiz" loading="lazy" decoding="async">
+      </figure>
 
       <div class="bio__texto">
         <p class="rotulo aparece">05 · Quién soy</p>
