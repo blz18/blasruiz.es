@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caso · Actualizar un catálogo sin teclear un solo precio — Blas Ruiz</title>
+<meta name="description" content="Casi 500 referencias en ocho documentos maquetados. La historia de por qué el trabajo de verdad no fue automatizar la actualización de precios, sino decidir qué dejar fuera de la automatización.">
+<meta name="theme-color" content="#f1f1f0">
+<link rel="canonical" href="https://blasruiz.es/caso-catalogo/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icono-180.png">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://blasruiz.es/caso-catalogo/">
+<meta property="og:site_name" content="Blas Ruiz">
+<meta property="og:title" content="Cuando el problema no está donde te dicen que está">
+<meta property="og:description" content="Casi 500 referencias en ocho documentos. El trabajo de verdad no fue automatizar la tarifa, sino decidir qué no automatizar.">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://blasruiz.es/og-blasruiz.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Diseño y produzco la comunicación visual de empresas industriales.">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Onest:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   blasruiz.es — caso de estudio · catálogo industrial
+   Marca: 01_ABOUT ME/referencia/brand-blas.md
+   Sistema visual compartido con index.html
+   ========================================================================== */
+
+:root{
+  --tinta:#333333;
+  --papel:#f1f1f0;
+  --papel-sutil:#fafafa;
+  --gris:#a3a3a3;
+  --naranja:#ff8666;
+  --azul:#00cfcf;
+  --verde:#71db6b;
+
+  --linea:rgba(51,51,51,.14);
+  --linea-inv:rgba(241,241,240,.18);
+
+  --titulo:'Outfit','Trebuchet MS',system-ui,sans-serif;
+  --cuerpo:'Onest',Arial,system-ui,sans-serif;
+  --mono:'DM Mono',ui-monospace,'SF Mono',Menlo,monospace;
+
+  --marco:clamp(1.25rem,5vw,5rem);
+  --ancho:76rem;
+  --aire:clamp(5rem,11vw,10rem);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html:focus-within{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--papel);
+  color:var(--tinta);
+  font-family:var(--cuerpo);
+  font-size:clamp(1rem,.95rem + .25vw,1.125rem);
+  line-height:1.62;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+
+h1,h2,h3,h4{
+  font-family:var(--titulo);
+  font-weight:500;
+  line-height:1.06;
+  letter-spacing:-.028em;
+  margin:0;
+  text-wrap:balance;
+}
+p{margin:0 0 1.15em}
+p:last-child{margin-bottom:0}
+
+.env{width:100%;max-width:var(--ancho);margin-inline:auto;padding-inline:var(--marco)}
+.seccion{padding-block:var(--aire)}
+.medida{max-width:38ch}
+.medida-l{max-width:52ch}
+
+/* --- etiqueta de sección ------------------------------------------------ */
+.rotulo{
+  font-family:var(--mono),var(--cuerpo);
+  font-size:.72rem;
+  font-weight:500;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--gris);
+  display:flex;
+  align-items:center;
+  gap:.9rem;
+  margin:0 0 2.75rem;
+}
+.rotulo::after{content:"";flex:1;height:1px;background:var(--linea)}
+.inverso .rotulo{color:rgba(241,241,240,.55)}
+.inverso .rotulo::after{background:var(--linea-inv)}
+
+/* --- botones ------------------------------------------------------------ */
+.btn{
+  --bg:var(--tinta); --fg:var(--papel);
+  display:inline-flex;align-items:center;gap:.7rem;
+  background:var(--bg);color:var(--fg);
+  font-family:var(--cuerpo);font-size:1rem;font-weight:500;
+  letter-spacing:-.01em;line-height:1;
+  padding:1.1rem 1.6rem;border:1px solid var(--bg);border-radius:2px;
+  text-decoration:none;cursor:pointer;
+  transition:background .28s ease,color .28s ease,border-color .28s ease,transform .28s ease;
+}
+.btn .flecha{transition:transform .28s ease}
+.btn:hover{--bg:var(--naranja);--fg:var(--tinta);border-color:var(--naranja)}
+.btn:hover .flecha{transform:translateX(4px)}
+.btn--fantasma{--bg:transparent;--fg:var(--tinta);border-color:var(--linea)}
+.btn--fantasma:hover{--bg:var(--tinta);--fg:var(--papel);border-color:var(--tinta)}
+.inverso .btn{--bg:var(--papel);--fg:var(--tinta)}
+.inverso .btn:hover{--bg:var(--naranja);--fg:var(--tinta)}
+.btn--sm{padding:.72rem 1.1rem;font-size:.9rem}
+
+.enlace{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-weight:500;text-decoration:none;
+  padding-bottom:.28rem;
+  border-bottom:1px solid var(--naranja);
+  transition:gap .25s ease,border-color .25s ease;
+}
+.enlace:hover{gap:.9rem;border-color:var(--tinta)}
+.inverso .enlace:hover{border-color:var(--papel)}
+.icono-social{display:inline-flex;align-items:center;color:var(--gris);transition:color .25s ease}
+.icono-social svg{width:20px;height:20px;display:block;fill:currentColor}
+.icono-social:hover{color:var(--tinta)}
+
+:where(a,button):focus-visible{
+  outline:2px solid var(--naranja);
+  outline-offset:3px;
+  border-radius:2px;
+}
+
+/* --- cabecera ----------------------------------------------------------- */
+.cabecera{
+  position:sticky;top:0;z-index:60;
+  background:rgba(241,241,240,.82);
+  backdrop-filter:saturate(1.6) blur(14px);
+  -webkit-backdrop-filter:saturate(1.6) blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s ease,background .3s ease;
+}
+.cabecera.pegada{border-bottom-color:var(--linea)}
+.cabecera .env{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1.5rem;min-height:5rem;
+}
+.marca{display:flex;align-items:center;gap:.85rem;text-decoration:none}
+.marca svg{width:26px;height:26px;flex:none}
+.marca b{font-family:var(--titulo);font-size:1.06rem;font-weight:600;letter-spacing:-.02em}
+.marca span{color:var(--gris);font-size:1.06rem;font-weight:300;letter-spacing:-.02em;font-family:var(--titulo)}
+
+.nav{display:flex;align-items:center;gap:2rem}
+.nav a:not(.btn){
+  text-decoration:none;font-size:.95rem;font-weight:400;
+  color:var(--tinta);position:relative;padding-block:.2rem;
+}
+.nav a:not(.btn)::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:0;
+  background:var(--naranja);transition:width .28s ease;
+}
+.nav a:not(.btn):hover::after{width:100%}
+@media (max-width:52rem){.nav .oculta-movil{display:none}}
+@media (max-width:30rem){.marca span{display:none}}
+
+/* --- bloques inversos --------------------------------------------------- */
+.inverso{background:var(--tinta);color:var(--papel)}
+.inverso h2,.inverso h3{color:var(--papel)}
+
+.cita{
+  border-left:2px solid var(--naranja);
+  padding-left:clamp(1.25rem,3vw,2rem);
+  font-family:var(--titulo);font-weight:300;
+  font-size:clamp(1.15rem,1rem + .7vw,1.6rem);
+  line-height:1.42;letter-spacing:-.02em;max-width:46ch;
+}
+
+/* --- cifras ------------------------------------------------------------- */
+.cifras{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));
+  gap:0;border-top:1px solid var(--linea);
+}
+.cifra{padding:2rem 1.5rem 2rem 0}
+.cifra + .cifra{padding-left:1.5rem;border-left:1px solid var(--linea)}
+.cifra b{
+  display:block;font-family:var(--titulo);font-weight:500;
+  font-size:clamp(2.2rem,1.6rem + 2vw,3.4rem);
+  letter-spacing:-.04em;line-height:1;margin-bottom:.6rem;
+}
+.cifra span{font-size:.88rem;color:#5c5c5c;line-height:1.4;display:block;max-width:20ch}
+.cifra--hallazgo b{color:var(--naranja)}
+@media (max-width:44rem){
+  .cifra,.cifra + .cifra{padding:1.5rem 0;padding-left:0;border-left:0;border-bottom:1px solid var(--linea)}
+  .cifra:last-child{border-bottom:0}
+}
+
+/* --- pie ---------------------------------------------------------------- */
+.pie{padding-block:3rem;border-top:1px solid var(--linea)}
+.pie .env{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:space-between;align-items:center}
+.pie small{font-size:.85rem;color:var(--gris)}
+.pie nav{display:flex;gap:1.5rem;flex-wrap:wrap}
+.pie nav a{font-size:.85rem;text-decoration:none;color:#5c5c5c}
+.pie nav a:hover{color:var(--tinta)}
+
+/* --- aparición ---------------------------------------------------------- */
+.aparece{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.aparece.visible{opacity:1;transform:none}
+
+/* ==========================================================================
+   Específico del caso
+   ========================================================================== */
+.volver{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-family:var(--mono),var(--cuerpo);font-size:.75rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gris);text-decoration:none;
+  transition:gap .25s ease,color .25s ease;
+}
+.volver .flecha{transition:transform .25s ease}
+.volver:hover{color:var(--tinta)}
+.volver:hover .flecha{transform:translateX(-4px)}
+
+.caso-hero{padding-block:clamp(2.5rem,6vw,4rem) clamp(2.5rem,5vw,4rem);position:relative;overflow:hidden}
+.caso-hero .env{position:relative;z-index:2}
+.caso-hero__rotulo{
+  font-family:var(--mono),var(--cuerpo);
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gris);margin:clamp(2rem,4vw,3rem) 0 clamp(1.5rem,3vw,2.25rem);
+  display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;
+}
+.punto{width:6px;height:6px;border-radius:50%;background:var(--naranja);flex:none}
+.caso-hero h1{
+  font-size:clamp(2.4rem,1.4rem + 4.4vw,4.6rem);
+  font-weight:500;max-width:17ch;margin-bottom:clamp(1.5rem,3vw,2.1rem);
+}
+.caso-hero__intro{
+  font-size:clamp(1.1rem,1rem + .55vw,1.4rem);line-height:1.5;
+  font-weight:300;color:#4a4a4a;max-width:52ch;
+}
+.caso-hero__intro b{font-weight:500;color:var(--tinta)}
+.caso-hero__marca-agua{
+  position:absolute;right:-6%;top:52%;transform:translateY(-50%);
+  width:min(42vw,30rem);opacity:.05;z-index:1;pointer-events:none;
+}
+@media (max-width:52rem){.caso-hero__marca-agua{display:none}}
+
+/* ficha del proyecto — reutiliza la retícula de sectores */
+.ficha{border-block:1px solid var(--linea);background:var(--papel-sutil)}
+.ficha .env{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:0;
+  padding-block:0;
+}
+.ficha__item{padding:1.9rem 1.5rem 1.9rem 1.75rem;border-left:1px solid var(--linea)}
+.ficha__item:first-child{padding-left:0;border-left:0}
+.ficha__item dt{
+  font-family:var(--mono),var(--cuerpo);font-size:.66rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gris);margin-bottom:.65rem;
+}
+.ficha__item dd{
+  margin:0;font-family:var(--titulo);font-weight:500;font-size:1.08rem;
+  letter-spacing:-.015em;line-height:1.25;
+}
+@media (max-width:44rem){
+  .ficha .env{grid-template-columns:1fr 1fr}
+  .ficha__item{padding:1.4rem 1.25rem 1.4rem 1.25rem}
+  .ficha__item:nth-child(odd){padding-left:0;border-left:0}
+  .ficha__item:nth-child(n+3){border-top:1px solid var(--linea)}
+}
+
+/* cuerpo narrativo */
+.bloque h2{
+  font-size:clamp(1.9rem,1.4rem + 2vw,3.2rem);max-width:18ch;margin-bottom:1.25rem;
+}
+.bloque__lead{color:#4a4a4a;max-width:54ch;font-size:clamp(1.05rem,1rem + .35vw,1.25rem);font-weight:300}
+.bloque__lead b{color:var(--tinta);font-weight:500}
+
+.pasos{border-top:1px solid var(--linea);margin-top:clamp(2.5rem,5vw,3.5rem)}
+.paso{
+  display:grid;grid-template-columns:auto 1fr;gap:clamp(1.25rem,4vw,3rem);
+  padding:clamp(2rem,4vw,2.75rem) 0;border-bottom:1px solid var(--linea);
+}
+.paso__n{font-family:var(--mono),var(--cuerpo);font-size:.72rem;letter-spacing:.18em;color:var(--naranja);padding-top:.45rem;white-space:nowrap}
+.paso h3{font-size:clamp(1.3rem,1.1rem + .8vw,1.8rem);font-weight:500;letter-spacing:-.02em;margin-bottom:.85rem;max-width:26ch}
+.paso p{color:#4a4a4a;max-width:58ch;font-size:1.02rem}
+.paso p:not(:last-child){margin-bottom:.9em}
+.paso p b{color:var(--tinta);font-weight:500}
+@media (max-width:44rem){.paso{grid-template-columns:1fr;gap:.6rem}.paso__n{padding-top:0}}
+
+/* sección de cifras dentro del caso */
+.cifras-caso .rotulo{margin-bottom:2rem}
+
+/* hallazgo — bloque inverso */
+.hallazgo__lead{
+  font-size:clamp(1.15rem,1rem + .7vw,1.55rem);font-family:var(--titulo);font-weight:300;
+  line-height:1.4;letter-spacing:-.02em;max-width:44ch;
+  color:rgba(241,241,240,.9);margin-bottom:clamp(2.25rem,4vw,3rem);
+}
+.hallazgo__lead b{color:var(--naranja);font-weight:400}
+
+/* cierre */
+.cierre-caso{text-align:left}
+.cierre-caso h2{font-size:clamp(2.1rem,1.5rem + 2.6vw,3.9rem);max-width:16ch;margin-bottom:1.5rem}
+.cierre-caso p{
+  font-size:clamp(1.05rem,1rem + .45vw,1.3rem);font-weight:300;line-height:1.5;
+  max-width:48ch;color:rgba(241,241,240,.78);margin-bottom:clamp(2.25rem,4vw,3rem);
+}
+.cierre-caso__acciones{display:flex;flex-wrap:wrap;gap:1rem 1.75rem;align-items:center}
+.cierre-caso__nota{font-size:.9rem;color:rgba(241,241,240,.5)}
+
+/* escaparate — mockup del catálogo en perspectiva */
+.escaparate{background:var(--papel-sutil);border-block:1px solid var(--linea);overflow:hidden}
+.escaparate .env{
+  display:grid;gap:clamp(2.5rem,6vw,5rem);align-items:center;
+}
+@media (min-width:62rem){.escaparate .env{grid-template-columns:.92fr 1.08fr}}
+.escaparate__texto h2{font-size:clamp(1.8rem,1.4rem + 1.8vw,3rem);max-width:15ch;margin-bottom:1.2rem}
+.escaparate__texto p{color:#4a4a4a;max-width:46ch}
+.escaparate__texto p b{color:var(--tinta);font-weight:500}
+.escaparate__pie{
+  margin-top:1.75rem;font-family:var(--mono),var(--cuerpo);
+  font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gris);
+  display:flex;align-items:center;gap:.7rem;
+}
+.escaparate__pie::before{content:"";width:1.75rem;height:1px;background:var(--naranja)}
+
+.pila-wrap{padding-block:clamp(1.5rem,4vw,3rem)}
+.pila{
+  display:grid;place-items:center;
+  transform:perspective(2200px) rotateY(-17deg) rotateX(5deg);
+  transform-style:preserve-3d;
+  transition:transform .6s cubic-bezier(.22,1,.36,1);
+}
+.pila:hover{transform:perspective(2600px) rotateY(-7deg) rotateX(2deg)}
+.pila__hoja{
+  grid-area:1 / 1;width:80%;
+  border:1px solid rgba(51,51,51,.12);border-radius:5px;
+  background:#fff;overflow:hidden;
+  box-shadow:0 28px 55px -22px rgba(51,51,51,.55),0 8px 16px -10px rgba(51,51,51,.3);
+  transition:transform .6s cubic-bezier(.22,1,.36,1);
+}
+.pila__hoja img{display:block;width:100%;height:auto}
+.pila__hoja:nth-child(1){transform:translate(-16%,7%) rotateZ(-8deg);z-index:1;filter:brightness(.94)}
+.pila__hoja:nth-child(2){transform:translate(7%,-4%) rotateZ(5deg);z-index:2;filter:brightness(.98)}
+.pila__hoja:nth-child(3){transform:translate(-2%,1%) rotateZ(-1.5deg);z-index:3}
+.pila:hover .pila__hoja:nth-child(1){transform:translate(-24%,7%) rotateZ(-11deg)}
+.pila:hover .pila__hoja:nth-child(2){transform:translate(13%,-6%) rotateZ(8deg)}
+
+/* anotación: resaltado sobre la columna de precios de la hoja protagonista */
+.pila__hoja--anota{overflow:visible}
+.pila__hoja--anota img{border-radius:5px}
+.marca-precio{
+  position:absolute;left:39.8%;top:26.2%;width:7%;height:6%;
+  border:2px solid var(--naranja);border-radius:3px;
+  background:rgba(255,134,102,.16);
+  box-shadow:0 0 0 3px rgba(255,134,102,.14);
+  z-index:4;
+}
+.marca-linea{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:4}
+.marca-pill{
+  position:absolute;left:54%;top:5.5%;z-index:5;
+  background:var(--tinta);color:var(--papel);
+  font-family:var(--mono),var(--cuerpo);
+  font-size:clamp(.5rem,.82vw,.72rem);letter-spacing:.12em;text-transform:uppercase;
+  font-weight:500;line-height:1;white-space:nowrap;
+  padding:.6em .8em;border-radius:2px;
+  box-shadow:0 10px 24px -10px rgba(51,51,51,.6);
+  display:flex;align-items:center;gap:.55em;
+}
+.marca-pill::before{content:"";width:.42em;height:.42em;border-radius:50%;background:var(--naranja);flex:none}
+@media (max-width:44rem){.marca-pill{font-size:.58rem}}
+@media (max-width:44rem){
+  .pila{transform:perspective(2200px) rotateY(-9deg) rotateX(3deg)}
+  .pila__hoja{width:86%}
+  .pila__hoja:nth-child(1){transform:translate(-11%,6%) rotateZ(-6deg)}
+  .pila__hoja:nth-child(2){transform:translate(6%,-3%) rotateZ(4deg)}
+}
+
+/* sección "lo que se queda" — texto + diagrama de flujo */
+.queda h2{margin-bottom:clamp(2.25rem,4vw,3rem)}
+.queda__grid{display:grid;gap:clamp(2.5rem,5vw,4.5rem);align-items:center}
+@media (min-width:62rem){.queda__grid{grid-template-columns:.82fr 1.18fr}}
+.queda__grid .bloque__lead{max-width:52ch}
+
+.flujo{display:flex;flex-direction:column;max-width:21rem}
+.flujo__cap{
+  font-family:var(--mono),var(--cuerpo);font-size:.7rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gris);margin:0 0 1rem;
+  display:flex;align-items:center;gap:.6rem;
+}
+.flujo__cap::before{content:"";width:1.4rem;height:1px;background:var(--naranja)}
+.flujo__paso{
+  display:flex;gap:.9rem;align-items:center;
+  border:1px solid var(--linea);border-radius:6px;background:var(--papel-sutil);
+  padding:.9rem 1.05rem;
+}
+.flujo__ico{
+  flex:none;width:2.3rem;height:2.3rem;border-radius:7px;
+  display:grid;place-items:center;
+  background:var(--papel);border:1px solid var(--linea);color:var(--naranja);
+}
+.flujo__ico svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.flujo__cuerpo b{display:block;font-family:var(--titulo);font-weight:600;font-size:1rem;letter-spacing:-.01em;line-height:1.15}
+.flujo__cuerpo span{display:block;font-size:.82rem;color:#5c5c5c;line-height:1.3;margin-top:.18rem}
+.flujo__link{align-self:flex-start;margin:.25rem 0 .25rem 2.05rem;color:var(--gris);display:grid;place-items:center;height:1.35rem}
+.flujo__link svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.flujo__paso--final{background:var(--tinta);border-color:var(--tinta)}
+.flujo__paso--final b{color:var(--papel)}
+.flujo__paso--final span{color:rgba(241,241,240,.58)}
+.flujo__paso--final .flujo__ico{background:rgba(241,241,240,.1);border-color:transparent;color:var(--verde)}
+
+@media (prefers-reduced-motion:reduce){
+  html:focus-within{scroll-behavior:auto}
+  .aparece{opacity:1;transform:none;transition:none}
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+@media print{
+  .cabecera,.caso-hero__marca-agua{display:none}
+  body{background:#fff}
+  .inverso{background:#fff;color:#333}
+}
+</style>
+</head>
+<body>
+
+<!-- ====================== CABECERA ====================== -->
+<header class="cabecera" id="cabecera">
+  <div class="env">
+    <a class="marca" href="/" aria-label="Blas Ruiz — inicio">
+      <svg viewBox="0 0 394 394" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path fill="#333333" d="M70.41,354c-23.73,0-43.04-19.31-43.04-43.04V83.04c0-23.73,19.31-43.04,43.04-43.04h175.21c51.76,0,94.71,41.23,95.73,91.92.33,16.22-3.54,32.27-11.19,46.42l-2.82,5.22,4.61,3.74c22.37,18.18,35.01,45.13,34.68,73.95-.59,51.14-43.52,92.75-95.69,92.75H70.41ZM88.82,298.87h177.63c21.35,0,38.73-17.38,38.73-38.73s-17.38-38.73-38.73-38.73H88.82v77.46ZM88.82,167.36h155.08c19.86,0,36.02-16.16,36.02-36.02s-16.16-36.02-36.02-36.02H88.82v72.05Z"/>
+      </svg>
+    </a>
+
+    <nav class="nav" aria-label="Navegación principal">
+      <a class="oculta-movil" href="/#caso">Casos</a>
+      <a class="oculta-movil" href="/#servicios">Servicios</a>
+      <a class="oculta-movil" href="/#bio">Sobre mí</a>
+      <a class="oculta-movil" href="https://blasruiz.myportfolio.com/" target="_blank" rel="noopener">Portfolio</a>
+      <a class="btn btn--sm" href="https://calendly.com/blas-ruiz1/15min" target="_blank" rel="noopener">
+        Hablemos <span class="flecha" aria-hidden="true">→</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ====================== HERO DEL CASO ====================== -->
+  <section class="caso-hero">
+    <svg class="caso-hero__marca-agua" viewBox="0 0 394 394" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <path fill="#333333" d="M70.41,354c-23.73,0-43.04-19.31-43.04-43.04V83.04c0-23.73,19.31-43.04,43.04-43.04h175.21c51.76,0,94.71,41.23,95.73,91.92.33,16.22-3.54,32.27-11.19,46.42l-2.82,5.22,4.61,3.74c22.37,18.18,35.01,45.13,34.68,73.95-.59,51.14-43.52,92.75-95.69,92.75H70.41ZM88.82,298.87h177.63c21.35,0,38.73-17.38,38.73-38.73s-17.38-38.73-38.73-38.73H88.82v77.46ZM88.82,167.36h155.08c19.86,0,36.02-16.16,36.02-36.02s-16.16-36.02-36.02-36.02H88.82v72.05Z"/>
+    </svg>
+    <div class="env">
+      <a class="volver" href="/#caso"><span class="flecha" aria-hidden="true">←</span> Volver a la home</a>
+      <p class="caso-hero__rotulo"><span class="punto" aria-hidden="true"></span>Caso de estudio · Distribución industrial</p>
+      <h1>Cuando el problema no está donde te dicen que está</h1>
+      <p class="caso-hero__intro">Una distribuidora industrial me pasa la actualización de tarifas de su catálogo. Casi <b>500 referencias</b> repartidas en ocho documentos maquetados como un solo libro. Cada temporada, alguien se sentaba a copiar precios a mano, uno por uno. Esto es lo que pasó cuando dejé de mirar los precios y empecé a mirar de dónde salían.</p>
+    </div>
+  </section>
+
+  <!-- ====================== FICHA ====================== -->
+  <section class="ficha">
+    <div class="env">
+      <div class="ficha__item"><dt>Cliente</dt><dd>Solvis Spain<br>Energía solar y climatización</dd></div>
+      <div class="ficha__item"><dt>Formato</dt><dd>Libro InDesign<br>8 documentos enlazados</dd></div>
+      <div class="ficha__item"><dt>Volumen</dt><dd>~500 referencias<br>de producto</dd></div>
+      <div class="ficha__item"><dt>Encargo</dt><dd>Actualización de<br>tarifa anual</dd></div>
+    </div>
+  </section>
+
+  <!-- ====================== ESCAPARATE / MOCKUP ====================== -->
+  <section class="escaparate">
+    <div class="env">
+      <div class="escaparate__texto aparece">
+        <p class="rotulo">El material</p>
+        <h2>Así se veía el encargo</h2>
+        <p>Cada doble página del catálogo de <b>Solvis</b> lleva varias tablas de precios —<em> Art.-Nr., descripción y PVP</em>. Multiplícalo por ocho documentos maquetados como un solo libro y tienes el mapa completo de lo que había que actualizar sin que se colara un solo error.</p>
+        <p class="escaparate__pie">Catálogo de producto · páginas de tarifa</p>
+      </div>
+      <div class="pila-wrap aparece">
+        <div class="pila">
+          <figure class="pila__hoja"><img src="img/pagina-01.jpg" alt="Doble página del catálogo Solvis: tablas de precios de fijaciones de colectores solares" loading="lazy" width="1700" height="1202"></figure>
+          <figure class="pila__hoja"><img src="img/pagina-03.jpg" alt="Doble página del catálogo Solvis: accesorios SolvisMax con tablas de tarifa" loading="lazy" width="1700" height="1202"></figure>
+          <figure class="pila__hoja pila__hoja--anota">
+            <img src="img/pagina-02.jpg" alt="Doble página del catálogo Solvis: sondas y grupos de bombeo con columnas Art.-Nr. y PVP" loading="lazy" width="1700" height="1202">
+            <svg class="marca-linea" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="46.8" y1="26" x2="55" y2="14.5" stroke="#ff8666" stroke-width="1" vector-effect="non-scaling-stroke"></line></svg>
+            <span class="marca-precio" aria-hidden="true"></span>
+            <span class="marca-pill">191 celdas actualizadas</span>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== EL ENCARGO ====================== -->
+  <section class="seccion bloque">
+    <div class="env">
+      <p class="rotulo aparece">01 · El encargo, tal y como llega</p>
+      <h2 class="aparece">Una línea de briefing, quinientas de trabajo</h2>
+      <p class="bloque__lead aparece">El encargo cabía en una frase: «actualiza los precios con la nueva tarifa». Traducido a horas de silla: abrir ocho documentos, buscar cada referencia, compararla con la hoja de precios y reescribir la celda. Casi quinientas veces. Es el tipo de tarea que se cobra por horas y que sale mal exactamente en la celda que nadie vuelve a mirar.</p>
+    </div>
+  </section>
+
+  <!-- ====================== EL PROCESO ====================== -->
+  <section class="seccion bloque" style="padding-top:0">
+    <div class="env">
+      <p class="rotulo aparece">02 · Primero, no tocar nada</p>
+      <h2 class="aparece">El oficio está en el orden, no en la velocidad</h2>
+      <p class="bloque__lead aparece">Teclear rápido no era la solución: era el problema disfrazado. Antes de cambiar un solo precio, había que entender por qué el trabajo se repetía cada temporada.</p>
+
+      <div class="pasos">
+        <article class="paso aparece">
+          <div class="paso__n">PASO 01</div>
+          <div>
+            <h3>Leer antes de escribir</h3>
+            <p>En vez de abrir a teclear, extraje la estructura de las ocho tablas y la crucé contra la hoja maestra de precios, emparejando cada fila por su número de artículo. <b>Antes de tocar nada quería saber cuántas referencias coincidían de verdad</b> y cuántas no. Casi la mitad ya estaban correctas: teclearlas nunca fue necesario.</p>
+          </div>
+        </article>
+
+        <article class="paso aparece">
+          <div class="paso__n">PASO 02</div>
+          <div>
+            <h3>Lo que aparece cuando ordenas</h3>
+            <p>Las tablas no hablaban el mismo idioma. La misma columna se llamaba «Descripción» en unos documentos y «Denominación» en otros. El código de artículo era «Art.-Nr.» aquí y «Nº Art.» allá. Algunos códigos arrastraban un cero delante que la hoja de precios no tenía, así que el emparejamiento automático los daba por inexistentes.</p>
+            <p><b>Una tabla entera estaba escondida</b> bajo una cabecera distinta y una fila fusionada — la primera lectura ni la detectó. Ninguno de estos defectos se ve tecleando; se ven cuando pones los datos en fila y algo no cuadra.</p>
+          </div>
+        </article>
+
+        <article class="paso aparece">
+          <div class="paso__n">PASO 03</div>
+          <div>
+            <h3>Unificar, y solo entonces transferir</h3>
+            <p>Primero, un script iguala las dieciocho cabeceras descuadradas; una segunda lectura confirma que no queda ninguna suelta. Con todo hablando el mismo idioma, y una copia de seguridad hecha un minuto antes, la transferencia real: <b>191 celdas actualizadas en una sola pasada</b>, precio y descripción, solo donde el valor difería.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== CIFRAS ====================== -->
+  <section class="seccion cifras-caso" style="padding-top:0">
+    <div class="env">
+      <p class="rotulo aparece">03 · En números</p>
+      <div class="cifras">
+        <div class="cifra aparece"><b>~500</b><span>referencias cotejadas contra la tarifa</span></div>
+        <div class="cifra aparece"><b>8</b><span>documentos enlazados como un libro</span></div>
+        <div class="cifra aparece"><b>191</b><span>celdas actualizadas en una sola pasada</span></div>
+        <div class="cifra cifra--hallazgo aparece"><b>51</b><span>duplicados en la hoja del cliente que nadie había visto</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== EL HALLAZGO ====================== -->
+  <section class="seccion inverso">
+    <div class="env">
+      <p class="rotulo aparece">04 · El trabajo de verdad</p>
+      <h2 class="aparece" style="max-width:20ch;margin-bottom:1.5rem">Lo importante no fue el script. Fue lo que decidí no automatizar.</h2>
+      <p class="hallazgo__lead aparece">Al cruzar los datos apareció lo que no estaba en el encargo: <b>51 referencias duplicadas en la propia hoja maestra del cliente.</b> La mayoría, inofensivas: el mismo precio escrito dos veces. Pero un puñado tenía dos precios distintos para el mismo artículo.</p>
+      <blockquote class="cita aparece">
+        Un ordenador habría elegido uno de los dos precios y seguido adelante. Los saqué de la pasada automática y los devolví a revisión. Un precio inventado por una máquina que llega impreso a un instalador cuesta mucho más que tres celdas pendientes.
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ====================== EL SISTEMA ====================== -->
+  <section class="seccion bloque queda">
+    <div class="env">
+      <p class="rotulo aparece">05 · Lo que se queda</p>
+      <h2 class="aparece">El catálogo se entrega. El sistema se queda.</h2>
+      <div class="queda__grid">
+        <div class="flujo aparece">
+          <p class="flujo__cap">La próxima temporada</p>
+          <div class="flujo__paso">
+            <span class="flujo__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11"/><path d="M8 7l4-4 4 4"/><path d="M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg></span>
+            <div class="flujo__cuerpo"><b>Exportar la tarifa</b><span>La hoja nueva a CSV, mismas columnas</span></div>
+          </div>
+          <div class="flujo__link" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+          <div class="flujo__paso">
+            <span class="flujo__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13"/><path d="M14 5l3 3-3 3"/><path d="M20 16H7"/><path d="M10 13l-3 3 3 3"/></svg></span>
+            <div class="flujo__cuerpo"><b>Sustituir el snapshot</b><span>Un archivo, no ocho documentos</span></div>
+          </div>
+          <div class="flujo__link" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+          <div class="flujo__paso">
+            <span class="flujo__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span>
+            <div class="flujo__cuerpo"><b>Ejecutar el script</b><span>Una pasada sobre InDesign</span></div>
+          </div>
+          <div class="flujo__link" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+          <div class="flujo__paso flujo__paso--final">
+            <span class="flujo__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l5 5L20 6"/></svg></span>
+            <div class="flujo__cuerpo"><b>Catálogo actualizado</b><span>Horas, no días</span></div>
+          </div>
+        </div>
+        <p class="bloque__lead aparece">El catálogo actualizado se entrega igual que siempre. La diferencia es lo que queda al lado: el script, la nomenclatura ya unificada, la copia de la hoja que se usó y el registro de qué se cambió y por qué. <b>La próxima tarifa no es otro proyecto de quinientas celdas.</b> Es exportar la hoja nueva, sustituir un archivo y volver a ejecutar. La primera vez fue un proyecto. La siguiente es un ajuste.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== CIERRE ====================== -->
+  <section class="seccion inverso cierre-caso" id="contacto">
+    <div class="env">
+      <p class="rotulo aparece">06 · Siguiente paso</p>
+      <h2 class="aparece">¿Tienes una tarea de las que vuelven cada temporada?</h2>
+      <p class="aparece">Si algo en tu equipo se rehace de cero cada vez, casi siempre hay un sistema esperando debajo. Cuéntamelo en quince minutos — sin presupuesto ni propuesta de por medio.</p>
+      <div class="cierre-caso__acciones aparece">
+        <a class="btn" href="https://calendly.com/blas-ruiz1/15min" target="_blank" rel="noopener">Reservar llamada de 15 min <span class="flecha" aria-hidden="true">→</span></a>
+        <span class="cierre-caso__nota">Videollamada · sin compromiso</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ====================== PIE ====================== -->
+<footer class="pie">
+  <div class="env">
+    <small>© <span id="anyo">2026</span> Blas Ruiz · Diseño y producción visual</small>
+    <nav aria-label="Enlaces del pie">
+      <a href="/#caso">Casos</a>
+      <a href="/#servicios">Servicios</a>
+      <a href="/#bio">Sobre mí</a>
+      <a href="/#contacto">Contacto</a>
+      <a class="icono-social" href="https://www.linkedin.com/in/blasruiz/" target="_blank" rel="noopener" aria-label="LinkedIn de Blas Ruiz"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  document.getElementById('anyo').textContent = new Date().getFullYear();
+
+  /* borde de la cabecera al hacer scroll */
+  var cabecera = document.getElementById('cabecera');
+  var marcaScroll = function(){
+    cabecera.classList.toggle('pegada', window.scrollY > 8);
+  };
+  marcaScroll();
+  window.addEventListener('scroll', marcaScroll, {passive:true});
+
+  /* aparición progresiva */
+  var elementos = document.querySelectorAll('.aparece');
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    elementos.forEach(function(el){ el.classList.add('visible'); });
+    return;
+  }
+
+  var observador = new IntersectionObserver(function(entradas){
+    entradas.forEach(function(entrada){
+      if (!entrada.isIntersecting) return;
+      var hermanos = Array.prototype.slice.call(
+        entrada.target.parentNode.querySelectorAll(':scope > .aparece')
+      );
+      var retardo = Math.min(hermanos.indexOf(entrada.target), 5) * 80;
+      setTimeout(function(){ entrada.target.classList.add('visible'); }, Math.max(retardo, 0));
+      observador.unobserve(entrada.target);
+    });
+  }, {rootMargin:'0px 0px -12% 0px', threshold:0.08});
+
+  elementos.forEach(function(el){ observador.observe(el); });
+})();
+</script>
+
+</body>
+</html>
