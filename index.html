@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Blas Ruiz — Comunicación visual para empresas industriales</title>
-<meta name="description" content="Diseño y produzco la comunicación visual de empresas industriales. Y dejo montado el sistema para que tu equipo la repita, y la próxima vez sea un ajuste y no un proyecto.">
+<meta name="description" content="Diseño y produzco la comunicación visual de empresas industriales. Y dejo montado el sistema para que los cambios sean más rápidos y eficientes. Así la próxima vez será un ajuste y no un proyecto nuevo.">
 <meta name="theme-color" content="#f1f1f0">
 <link rel="canonical" href="https://blasruiz.es/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -52,6 +52,10 @@
   --marco:clamp(1.25rem,5vw,5rem);
   --ancho:76rem;
   --aire:clamp(5rem,11vw,10rem);
+
+  /* rango de anchos de cada imagen de la marquesina del hero — ajustable */
+  --marquesina-max:340px;
+  --marquesina-min:100px;
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -179,18 +183,16 @@ p:last-child{margin-bottom:0}
 /* --- hero --------------------------------------------------------------- */
 .hero{padding-block:clamp(4.5rem,10vw,9rem) clamp(4rem,8vw,7rem);position:relative;overflow:hidden}
 .hero .env{position:relative;z-index:2}
-.hero__firma{
-  font-family:var(--mono),var(--cuerpo);
-  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--gris);margin:0 0 clamp(2rem,4vw,3.25rem);
-  display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;
+
+.hero__cuerpo{
+  display:grid;grid-template-columns:1.15fr .85fr;
+  gap:clamp(2rem,5vw,4rem);align-items:center;
+  position:relative;
 }
-.punto{width:6px;height:6px;border-radius:50%;background:var(--naranja);flex:none}
 
 .hero h1{
-  font-size:clamp(2.6rem,1.4rem + 5.4vw,5.4rem);
+  font-size:clamp(2rem,1.1rem + 4.2vw,4.2rem);
   font-weight:500;
-  max-width:19ch;
   margin-bottom:clamp(1.5rem,3vw,2.25rem);
 }
 .hero h1 em{
@@ -213,11 +215,50 @@ p:last-child{margin-bottom:0}
 .hero__acciones{display:flex;flex-wrap:wrap;gap:1rem;align-items:center}
 .hero__nota{font-size:.9rem;color:var(--gris)}
 
-.hero__marca-agua{
-  position:absolute;right:-6%;top:50%;transform:translateY(-50%);
-  width:min(46vw,34rem);opacity:.05;z-index:1;pointer-events:none;
+/* --- marquesina vertical (dos filas, sube / baja) ------------------------ */
+.hero__texto{position:relative;z-index:1}
+
+.hero__visual{
+  position:relative;height:clamp(26rem,52vw,34rem);
+  display:flex;align-items:center;justify-content:center;
 }
-@media (max-width:52rem){.hero__marca-agua{display:none}}
+.marquesina{
+  position:relative;display:flex;
+  width:100%;height:132%;
+  transform:rotate(7deg);
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 86%,transparent 100%);
+  mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 86%,transparent 100%);
+}
+.marquesina__col{flex:1;min-width:0;height:100%;overflow:visible}
+.marquesina__col--baja{margin-left:-1.75rem;padding-top:3.5rem}
+
+.marquesina__pista{
+  display:flex;flex-direction:column;align-items:center;
+  will-change:transform;
+  animation:desfile-sube 34s linear infinite;
+}
+.marquesina__pista--baja{animation-name:desfile-baja;animation-duration:40s}
+@keyframes desfile-sube{to{transform:translateY(-50%)}}
+@keyframes desfile-baja{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+
+.marquesina__item{
+  width:var(--w,220px);
+  border:1px solid var(--linea);border-radius:4px;
+  background:var(--papel-sutil);
+  box-shadow:0 6px 16px rgba(51,51,51,.07);
+  flex:none;overflow:hidden;
+  display:block;object-fit:cover;
+}
+
+/* móvil / tablet: la marquesina pasa a fondo del texto, sin crecer */
+@media (max-width:64rem){
+  .hero__cuerpo{display:block}
+  .hero__visual{
+    position:absolute;inset:0;height:auto;
+    z-index:0;opacity:.14;pointer-events:none;
+  }
+  .marquesina{width:135%;margin-left:-17.5%;height:100%}
+}
 
 /* --- barra de credenciales --------------------------------------------- */
 .credenciales{border-block:1px solid var(--linea);background:var(--papel-sutil)}
@@ -441,11 +482,12 @@ p:last-child{margin-bottom:0}
   html:focus-within{scroll-behavior:auto}
   .aparece{opacity:1;transform:none;transition:none}
   .hero h1 em{animation:none;background-size:100% .1em}
+  .marquesina__pista{animation:none}
   *{animation-duration:.01ms !important;transition-duration:.01ms !important}
 }
 
 @media print{
-  .cabecera,.hero__marca-agua{display:none}
+  .cabecera,.hero__visual{display:none}
   body{background:#fff}
   .inverso{background:#fff;color:#333}
 }
@@ -478,20 +520,29 @@ p:last-child{margin-bottom:0}
 
   <!-- ====================== HERO ====================== -->
   <section class="hero">
-    <svg class="hero__marca-agua" viewBox="0 0 394 394" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-      <path fill="#333333" d="M70.41,354c-23.73,0-43.04-19.31-43.04-43.04V83.04c0-23.73,19.31-43.04,43.04-43.04h175.21c51.76,0,94.71,41.23,95.73,91.92.33,16.22-3.54,32.27-11.19,46.42l-2.82,5.22,4.61,3.74c22.37,18.18,35.01,45.13,34.68,73.95-.59,51.14-43.52,92.75-95.69,92.75H70.41ZM88.82,298.87h177.63c21.35,0,38.73-17.38,38.73-38.73s-17.38-38.73-38.73-38.73H88.82v77.46ZM88.82,167.36h155.08c19.86,0,36.02-16.16,36.02-36.02s-16.16-36.02-36.02-36.02H88.82v72.05Z"/>
-    </svg>
-
     <div class="env">
-      <p class="hero__firma"><span class="punto" aria-hidden="true"></span> Diseño · Producción · Automatización</p>
+      <div class="hero__cuerpo">
+        <div class="hero__texto">
+          <h1>Diseño y produzco la comunicación visual de <em>empresas industriales</em>.</h1>
 
-      <h1>Diseño y produzco la comunicación visual de <em>empresas industriales</em>.</h1>
+          <p class="hero__sub">Y dejo montado el sistema para que los cambios sean más rápidos y eficientes. Así la próxima vez será un ajuste y no un proyecto nuevo. <b>25 años de oficio.</b></p>
 
-      <p class="hero__sub">Y dejo montado el sistema para que tu equipo la repita, y la próxima vez sea un ajuste y no un proyecto. <b>25 años de oficio.</b></p>
+          <div class="hero__acciones">
+            <a class="btn" href="#contacto">Cuéntame qué tienes atascado <span class="flecha" aria-hidden="true">→</span></a>
+            <a class="btn btn--fantasma" href="#caso">Ver un caso real</a>
+          </div>
+        </div>
 
-      <div class="hero__acciones">
-        <a class="btn" href="#contacto">Cuéntame qué tienes atascado <span class="flecha" aria-hidden="true">→</span></a>
-        <a class="btn btn--fantasma" href="#caso">Ver un caso real</a>
+        <div class="hero__visual" aria-hidden="true">
+          <div class="marquesina">
+            <div class="marquesina__col">
+              <div class="marquesina__pista" id="pista-sube"></div>
+            </div>
+            <div class="marquesina__col marquesina__col--baja">
+              <div class="marquesina__pista marquesina__pista--baja" id="pista-baja"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -709,6 +760,75 @@ p:last-child{margin-bottom:0}
   };
   marcaScroll();
   window.addEventListener('scroll', marcaScroll, {passive:true});
+
+  /* --- marquesina del hero: dos columnas, ancho aleatorio, solape irregular --- */
+  var imgColSube = [
+    {src:'/img/marquesina/marquesina-01.jpg', ratio:'1280/855'},
+    {src:'/img/marquesina/marquesina-05.jpg', ratio:'1280/720'},
+    {src:'/img/marquesina/marquesina-11.jpg', ratio:'1200/1600'},
+    {src:'/img/marquesina/marquesina-07.jpg', ratio:'1280/855'},
+    {src:'/img/marquesina/marquesina-14.jpg', ratio:'1200/900'},
+    {src:'/img/marquesina/marquesina-12.jpg', ratio:'1200/1812'},
+    {src:'/img/marquesina/marquesina-03.jpg', ratio:'1280/855'},
+    {src:'/img/marquesina/marquesina-09.jpg', ratio:'1197/800'}
+  ];
+  var imgColBaja = [
+    {src:'/img/marquesina/marquesina-02.jpg', ratio:'1280/853'},
+    {src:'/img/marquesina/marquesina-16.jpg', ratio:'1200/800'},
+    {src:'/img/marquesina/marquesina-13.jpg', ratio:'1200/1670'},
+    {src:'/img/marquesina/marquesina-06.jpg', ratio:'1280/855'},
+    {src:'/img/marquesina/marquesina-15.jpg', ratio:'1200/900'},
+    {src:'/img/marquesina/marquesina-04.jpg', ratio:'1076/719'},
+    {src:'/img/marquesina/marquesina-10.jpg', ratio:'802/536'},
+    {src:'/img/marquesina/marquesina-08.jpg', ratio:'1280/855'}
+  ];
+
+  var pistaSube = document.getElementById('pista-sube');
+  if (pistaSube){
+    var raizEstilos = getComputedStyle(document.documentElement);
+    var maxDeseado = parseFloat(raizEstilos.getPropertyValue('--marquesina-max')) || 300;
+    var minDeseado = parseFloat(raizEstilos.getPropertyValue('--marquesina-min')) || 150;
+
+    var construirColumna = function(pista, imagenes, velocidadPxSeg){
+      var columna = pista.closest('.marquesina__col');
+      var anchoDisponible = columna.clientWidth || maxDeseado;
+      var max = Math.min(maxDeseado, anchoDisponible - 6);
+      var min = Math.min(minDeseado, Math.max(max - 30, 40));
+
+      /* la lista se repite igual para que el bucle de scroll sea continuo */
+      imagenes.concat(imagenes).forEach(function(imagen, indice){
+        /* sesgo hacia los extremos: menos tamaños "medianos", más contraste grande/pequeño */
+        var t = Math.random();
+        var sesgo = 1.7;
+        t = t < 0.5 ? 0.5 * Math.pow(t * 2, sesgo) : 1 - 0.5 * Math.pow((1 - t) * 2, sesgo);
+        var ancho = Math.round(min + t * (max - min));
+
+        var el = document.createElement('img');
+        el.className = 'marquesina__item';
+        el.src = imagen.src;
+        el.alt = '';
+        el.loading = 'lazy';
+        el.decoding = 'async';
+        el.style.setProperty('--w', ancho + 'px');
+        el.style.aspectRatio = imagen.ratio;
+
+        /* solape irregular: margen negativo variable + pequeño desvío horizontal */
+        var esPrimero = (indice === 0);
+        el.style.marginTop = esPrimero ? '0px' : -(10 + Math.random() * 26).toFixed(0) + 'px';
+        el.style.transform = 'translateX(' + (Math.random() * 26 - 13).toFixed(0) + 'px)';
+
+        pista.appendChild(el);
+      });
+
+      requestAnimationFrame(function(){
+        var alturaMitad = pista.scrollHeight / 2;
+        pista.style.animationDuration = Math.max(alturaMitad / velocidadPxSeg, 12) + 's';
+      });
+    };
+
+    construirColumna(pistaSube, imgColSube, 24);
+    construirColumna(document.getElementById('pista-baja'), imgColBaja, 20);
+  }
 
   /* aparición progresiva */
   var elementos = document.querySelectorAll('.aparece');
