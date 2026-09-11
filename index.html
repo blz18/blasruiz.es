@@ -452,6 +452,25 @@ p:last-child{margin-bottom:0}
 .sector span{font-size:.88rem;color:#5c5c5c}
 @media (max-width:44rem){.sector,.sector + .sector{padding:1.4rem 0;padding-left:0;border-left:0}}
 
+/* --- testimonios ---------------------------------------------------------
+   Deliberadamente distinta al resto del sitio (que usa líneas/bordes):
+   tarjetas flotantes, fondo blanco, muy redondeadas, con elevación al hover. */
+.testimonios__rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:clamp(1.25rem,2.5vw,1.75rem)}
+.testimonio{
+  background:#fff;border-radius:1.5rem;
+  padding:clamp(1.75rem,3vw,2.25rem);
+  display:flex;flex-direction:column;gap:1.5rem;
+  box-shadow:0 4px 20px rgba(51,51,51,.06);
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.testimonio:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(51,51,51,.12)}
+.testimonio p{
+  font-family:var(--titulo);font-weight:300;
+  font-size:1.05rem;line-height:1.5;letter-spacing:-.01em;
+}
+.testimonio footer{font-size:.88rem;color:#5c5c5c}
+.testimonio footer b{color:var(--tinta);font-weight:500}
+
 /* --- cierre ------------------------------------------------------------- */
 .cierre{text-align:left}
 .cierre h2{font-size:clamp(2.3rem,1.6rem + 3vw,4.4rem);max-width:13ch;margin-bottom:1.75rem}
@@ -716,10 +735,34 @@ p:last-child{margin-bottom:0}
     </div>
   </section>
 
+  <!-- ====================== TESTIMONIOS ====================== -->
+  <section class="seccion testimonios" aria-labelledby="testimonios-t">
+    <div class="env">
+      <p class="rotulo aparece" id="testimonios-t">07 · Lo que dicen mis clientes</p>
+
+      <div class="testimonios__rejilla">
+        <article class="testimonio aparece">
+          <p>«Tiene el ojo para darnos algo atractivo y diferenciado, mucho más allá de cualquier plataforma o agente de IA. Y rápido: la guía de estilos quedó como un documento vivo que ya usamos con nuestras propias herramientas de IA.»</p>
+          <footer><b>Ventura Pobre</b> — Trimergy</footer>
+        </article>
+
+        <article class="testimonio aparece">
+          <p>«Nos ayudó mucho a renovar nuestra imagen corporativa: teníamos una imagen ya muy antigua y con pocas instrucciones supo dar con la necesidad de nuestra nueva imagen, mucho más moderna y sencilla. Cada consulta o modificación que hemos necesitado nos ha dado una respuesta muy rápida.»</p>
+          <footer><b>Toñi</b> — RIA Recambios Industriales de Albacete</footer>
+        </article>
+
+        <article class="testimonio aparece">
+          <p>«Incluso trabajando a contrarreloj, el resultado es impecable. Rapidez, eficiencia y una comunicación fácil en todo momento. ¡Muy recomendable!»</p>
+          <footer><b>Lorena</b> — DOP Queso Manchego</footer>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- ====================== CIERRE ====================== -->
   <section class="seccion inverso cierre" id="contacto">
     <div class="env">
-      <p class="rotulo aparece">07 · Siguiente paso</p>
+      <p class="rotulo aparece">08 · Siguiente paso</p>
       <h2 class="aparece">¿Hablamos quince minutos?</h2>
       <p class="aparece">Sin presupuesto ni propuesta de por medio. Me cuentas qué se atasca y te digo si es algo que yo pueda resolver — y si no lo es, también.</p>
       <div class="cierre__acciones aparece">
