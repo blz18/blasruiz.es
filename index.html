@@ -452,9 +452,13 @@ p:last-child{margin-bottom:0}
 .sector span{font-size:.88rem;color:#5c5c5c}
 @media (max-width:44rem){.sector,.sector + .sector{padding:1.4rem 0;padding-left:0;border-left:0}}
 
-/* --- testimonios ---------------------------------------------------------
+/* --- testimonios (subsección dentro de "clientes") ------------------------
    Deliberadamente distinta al resto del sitio (que usa líneas/bordes):
    tarjetas flotantes, fondo blanco, muy redondeadas, con elevación al hover. */
+.testimonios__titulo{
+  font-size:clamp(1.4rem,1.15rem + 1.2vw,1.9rem);
+  margin-top:clamp(3rem,6vw,4.5rem);margin-bottom:clamp(2rem,4vw,2.75rem);
+}
 .testimonios__rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:clamp(1.25rem,2.5vw,1.75rem)}
 .testimonio{
   background:#fff;border-radius:1.5rem;
@@ -738,7 +742,7 @@ p:last-child{margin-bottom:0}
     </div>
   </section>
 
-  <!-- ====================== CLIENTES ====================== -->
+  <!-- ====================== CLIENTES + TESTIMONIOS ====================== -->
   <section class="seccion clientes" aria-labelledby="clientes-t">
     <div class="env">
       <p class="rotulo aparece">06 · Con quién trabajo</p>
@@ -750,13 +754,8 @@ p:last-child{margin-bottom:0}
         <div class="sector aparece"><b>Equipamiento y energía</b><span>Identidad, documentación y piezas de feria</span></div>
         <div class="sector aparece"><b>Sector social</b><span>Comunicación pública y accesibilidad visual</span></div>
       </div>
-    </div>
-  </section>
 
-  <!-- ====================== TESTIMONIOS ====================== -->
-  <section class="seccion testimonios" aria-labelledby="testimonios-t">
-    <div class="env">
-      <p class="rotulo aparece" id="testimonios-t">07 · Lo que dicen mis clientes</p>
+      <h2 class="testimonios__titulo aparece">Lo que dicen mis clientes</h2>
 
       <div class="testimonios__rejilla">
         <article class="testimonio aparece">
@@ -796,7 +795,7 @@ p:last-child{margin-bottom:0}
   <!-- ====================== CIERRE ====================== -->
   <section class="seccion inverso cierre" id="contacto">
     <div class="env">
-      <p class="rotulo aparece">08 · Siguiente paso</p>
+      <p class="rotulo aparece">07 · Siguiente paso</p>
       <h2 class="aparece">¿Hablamos quince minutos?</h2>
       <p class="aparece">Sin presupuesto ni propuesta de por medio. Me cuentas qué se atasca y te digo si es algo que yo pueda resolver — y si no lo es, también.</p>
       <div class="cierre__acciones aparece">
