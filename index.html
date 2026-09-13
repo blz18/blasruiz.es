@@ -475,6 +475,17 @@ p:last-child{margin-bottom:0}
   padding-left:1.4rem;position:relative;
 }
 .testimonio__lista li::before{content:"";position:absolute;left:0;top:.62em;width:.9rem;height:1px;background:var(--naranja)}
+.testimonio__marca{
+  font-family:var(--mono),var(--cuerpo);font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--naranja);
+}
+.testimonio__firma{display:flex;align-items:center;gap:.85rem;margin-top:auto}
+.testimonio__inicial{
+  width:2.5rem;height:2.5rem;border-radius:50%;flex:none;
+  background:var(--papel-sutil);border:1px solid var(--linea);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--titulo);font-weight:500;font-size:.95rem;color:var(--gris);
+}
 .testimonio footer{font-size:.88rem;color:#5c5c5c}
 .testimonio footer b{color:var(--tinta);font-weight:500}
 
@@ -749,22 +760,34 @@ p:last-child{margin-bottom:0}
 
       <div class="testimonios__rejilla">
         <article class="testimonio aparece">
+          <span class="testimonio__marca">Equipamiento y energía</span>
           <ul class="testimonio__lista">
             <li>Tiene el ojo y el criterio para entender lo que buscamos y darnos un resultado atractivo y diferenciado — mucho más allá de lo que saca cualquier plataforma o agente de IA.</li>
             <li>Velocidad.</li>
             <li>La guía de estilos quedó como un documento vivo que ya usamos con nuestras propias herramientas de IA, como Claude Design.</li>
           </ul>
-          <footer><b>Ventura Pobre</b> — Trimergy</footer>
+          <div class="testimonio__firma">
+            <span class="testimonio__inicial" aria-hidden="true">V</span>
+            <footer><b>Ventura Pobre</b> — Trimergy</footer>
+          </div>
         </article>
 
         <article class="testimonio aparece">
+          <span class="testimonio__marca">Distribución industrial</span>
           <p>«Nos ayudó mucho a renovar nuestra imagen corporativa: teníamos una imagen ya muy antigua y con pocas instrucciones supo dar con la necesidad de nuestra nueva imagen, mucho más moderna y sencilla. Cada consulta o modificación que hemos necesitado nos ha dado una respuesta muy rápida.»</p>
-          <footer><b>Toñi</b> — RIA Recambios Industriales de Albacete</footer>
+          <div class="testimonio__firma">
+            <span class="testimonio__inicial" aria-hidden="true">T</span>
+            <footer><b>Toñi</b> — RIA Recambios Industriales de Albacete</footer>
+          </div>
         </article>
 
         <article class="testimonio aparece">
+          <span class="testimonio__marca">Denominación de origen</span>
           <p>«Incluso trabajando a contrarreloj, el resultado es impecable. Rapidez, eficiencia y una comunicación fácil en todo momento. ¡Muy recomendable!»</p>
-          <footer><b>Lorena</b> — DOP Queso Manchego</footer>
+          <div class="testimonio__firma">
+            <span class="testimonio__inicial" aria-hidden="true">L</span>
+            <footer><b>Lorena</b> — DOP Queso Manchego</footer>
+          </div>
         </article>
       </div>
     </div>
