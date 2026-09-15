@@ -54,7 +54,7 @@
 
   --marco:clamp(1.25rem,5vw,5rem);
   --ancho:76rem;
-  --aire:clamp(5rem,11vw,10rem);
+  --aire:clamp(3.5rem,7vw,7rem);
 
   /* retícula: proporciones de grid de 2 columnas reutilizadas en el sitio */
   --split-b:.8fr 1.2fr;    /* columna secundaria más pesada — queda__grid */
@@ -225,7 +225,7 @@ p:last-child{margin-bottom:0}
 }
 
 /* --- pie ---------------------------------------------------------------- */
-.pie{padding-block:3rem;border-top:1px solid var(--linea)}
+.pie{padding-block:2.25rem;border-top:1px solid var(--linea)}
 .pie .env{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:space-between;align-items:center}
 .pie small{font-size:.85rem;color:var(--gris)}
 .pie nav{display:flex;gap:1.5rem;flex-wrap:wrap}
@@ -249,12 +249,12 @@ p:last-child{margin-bottom:0}
 .volver:hover{color:var(--tinta)}
 .volver:hover .flecha{transform:translateX(-4px)}
 
-.caso-hero{padding-block:clamp(2.5rem,6vw,4rem) clamp(2.5rem,5vw,4rem);position:relative;overflow:hidden}
+.caso-hero{padding-block:clamp(1.75rem,4vw,3rem) clamp(2rem,4vw,3.25rem);position:relative;overflow:hidden}
 .caso-hero .env{position:relative;z-index:2}
 .caso-hero__rotulo{
   font-family:var(--mono),var(--cuerpo);
   font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--gris);margin:clamp(2rem,4vw,3rem) 0 clamp(1.5rem,3vw,2.25rem);
+  color:var(--gris);margin:clamp(1.5rem,3vw,2.25rem) 0 clamp(1.25rem,2.5vw,1.75rem);
   display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;
 }
 .punto{width:6px;height:6px;border-radius:50%;background:var(--naranja);flex:none}
@@ -357,7 +357,7 @@ p:last-child{margin-bottom:0}
 }
 .escaparate__pie::before{content:"";width:1.75rem;height:1px;background:var(--naranja)}
 
-.pila-wrap{padding-block:clamp(1.5rem,4vw,3rem)}
+.pila-wrap{padding-block:clamp(1.25rem,3vw,2.25rem)}
 .pila{
   display:grid;place-items:center;
   transform:perspective(2200px) rotateY(-17deg) rotateX(5deg);
