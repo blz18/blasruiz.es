@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>De Excel y WhatsApp a una herramienta propia — Blas Ruiz</title>
+<meta name="description" content="Un caso real de sistema de gestión a medida para una empresa de integración audiovisual: de Excel, WhatsApp y notas sueltas a una aplicación propia con una capa de IA conectada a los datos.">
+<meta name="theme-color" content="#f1f1f0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://blasruiz.es/landing-linkedin/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icono-180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Onest:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   blasruiz.es — landing LinkedIn · sistema de gestión a medida (BORRADOR)
+   Marca: 01_ABOUT ME/referencia/brand-blas.md
+   Sistema visual compartido con index.html / caso-catalogo/ / caso-marca-ia/
+   Contenido fuente: 00_SESIONES/20260914-blasruiz-revision-web-ventas.md (L33+)
+   Nota: nombre de cliente anonimizado ("empresa de integración audiovisual")
+   hasta que se autorice publicar "CableDesign" — ver nota del borrador.
+   ========================================================================== */
+
+:root{
+  --tinta:#333333;
+  --papel:#f1f1f0;
+  --papel-sutil:#fafafa;
+  --gris:#a3a3a3;
+  --naranja:#ff8666;
+  --azul:#00cfcf;
+  --verde:#71db6b;
+
+  --linea:rgba(51,51,51,.14);
+  --linea-inv:rgba(241,241,240,.18);
+
+  --texto:#4a4a4a;
+  --texto-sutil:#5c5c5c;
+
+  --titulo:'Outfit','Trebuchet MS',system-ui,sans-serif;
+  --cuerpo:'Onest',Arial,system-ui,sans-serif;
+  --mono:'DM Mono',ui-monospace,'SF Mono',Menlo,monospace;
+
+  --marco:clamp(1.25rem,5vw,5rem);
+  --ancho:76rem;
+  --aire:clamp(5rem,11vw,10rem);
+
+  --radio-sm:5rem;
+  --radio-md:1.2rem;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+html:focus-within{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--papel);
+  color:var(--tinta);
+  font-family:var(--cuerpo);
+  font-size:clamp(1rem,.95rem + .25vw,1.125rem);
+  line-height:1.62;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+
+h1,h2,h3,h4{
+  font-family:var(--titulo);
+  font-weight:500;
+  line-height:1.06;
+  letter-spacing:-.028em;
+  margin:0;
+  text-wrap:balance;
+}
+p{margin:0 0 1.15em}
+p:last-child{margin-bottom:0}
+
+.env{width:100%;max-width:var(--ancho);margin-inline:auto;padding-inline:var(--marco)}
+.seccion{padding-block:var(--aire)}
+
+/* --- etiqueta de sección ------------------------------------------------ */
+.rotulo{
+  font-family:var(--mono),var(--cuerpo);
+  font-size:.72rem;
+  font-weight:500;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--azul);
+  display:flex;
+  align-items:center;
+  gap:.9rem;
+  margin:0 0 2.75rem;
+}
+.rotulo::after{content:"";flex:1;height:1px;background:var(--linea)}
+.inverso .rotulo{color:var(--azul)}
+.inverso .rotulo::after{background:var(--linea-inv)}
+
+/* --- botones ------------------------------------------------------------ */
+.btn{
+  --bg:var(--tinta); --fg:var(--papel);
+  display:inline-flex;align-items:center;gap:.7rem;
+  background:var(--bg);color:var(--fg);
+  font-family:var(--cuerpo);font-size:1rem;font-weight:500;
+  letter-spacing:-.01em;line-height:1;
+  padding:1.1rem 1.6rem;border:1px solid var(--bg);border-radius:var(--radio-sm);
+  text-decoration:none;cursor:pointer;
+  transition:background .28s ease,color .28s ease,border-color .28s ease,transform .28s ease;
+}
+.btn .flecha{transition:transform .28s ease}
+.btn:hover{--bg:var(--naranja);--fg:var(--tinta);border-color:var(--naranja)}
+.btn:hover .flecha{transform:translateX(4px)}
+.btn--fantasma{--bg:transparent;--fg:var(--tinta);border-color:var(--linea)}
+.btn--fantasma:hover{--bg:var(--tinta);--fg:var(--papel);border-color:var(--tinta)}
+.inverso .btn{--bg:var(--papel);--fg:var(--tinta)}
+.inverso .btn:hover{--bg:var(--naranja);--fg:var(--tinta)}
+.btn--sm{padding:.72rem 1.1rem;font-size:.9rem}
+
+.enlace{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-weight:500;text-decoration:none;
+  padding-bottom:.28rem;
+  border-bottom:1px solid var(--naranja);
+  transition:gap .25s ease,border-color .25s ease;
+}
+.enlace:hover{gap:.9rem;border-color:var(--tinta)}
+.inverso .enlace:hover{border-color:var(--papel)}
+
+:where(a,button):focus-visible{
+  outline:2px solid var(--naranja);
+  outline-offset:3px;
+  border-radius:var(--radio-sm);
+}
+
+/* --- cabecera ------------------------------------------------------------ */
+.cabecera{
+  position:sticky;top:0;z-index:60;
+  background:rgba(241,241,240,.82);
+  backdrop-filter:saturate(1.6) blur(14px);
+  -webkit-backdrop-filter:saturate(1.6) blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s ease,background .3s ease;
+}
+.cabecera.pegada{border-bottom-color:var(--linea)}
+.cabecera .env{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1.5rem;min-height:5rem;
+}
+
+.nav{display:flex;align-items:center;gap:2rem}
+.nav a:not(.btn){
+  text-decoration:none;font-size:.95rem;font-weight:400;
+  color:var(--tinta);position:relative;padding-block:.2rem;
+}
+.nav a:not(.btn)::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:0;
+  background:var(--naranja);transition:width .28s ease;
+}
+.nav a:not(.btn):hover::after{width:100%}
+@media (max-width:52rem){.nav .oculta-movil{display:none}}
+.marca{display:flex;align-items:center;gap:.85rem;text-decoration:none}
+.marca svg{width:26px;height:26px;flex:none}
+
+/* --- bloques inversos --------------------------------------------------- */
+.inverso{background:var(--tinta);color:var(--papel)}
+.inverso h2,.inverso h3{color:var(--papel)}
+
+.cita{
+  border-left:2px solid var(--naranja);
+  padding-left:clamp(1.1rem,2.5vw,1.5rem);
+  font-family:var(--titulo);font-weight:300;
+  font-size:clamp(1.02rem,.95rem + .4vw,1.25rem);
+  line-height:1.44;letter-spacing:-.015em;max-width:44ch;
+}
+.citas{display:flex;flex-direction:column;gap:1.5rem;margin:clamp(2rem,4vw,2.75rem) 0}
+.inverso .cita{color:var(--papel)}
+
+/* --- pie ---------------------------------------------------------------- */
+.pie{padding-block:3rem;border-top:1px solid var(--linea)}
+.pie .env{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:space-between;align-items:center}
+.pie small{font-size:.85rem;color:var(--gris)}
+.pie nav{display:flex;gap:1.5rem;flex-wrap:wrap}
+.pie nav a{font-size:.85rem;text-decoration:none;color:var(--texto-sutil)}
+.pie nav a:hover{color:var(--tinta)}
+.icono-social{display:inline-flex;align-items:center;color:var(--gris);transition:color .25s ease}
+.icono-social svg{width:20px;height:20px;display:block;fill:currentColor}
+.icono-social:hover{color:var(--tinta)}
+
+/* --- aparición (scroll-reveal, ya solo se usa en el cierre) -------------- */
+.aparece{opacity:0;transform:translateY(18px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.aparece.visible{opacity:1;transform:none}
+
+/* ==========================================================================
+   Específico de esta landing
+   ========================================================================== */
+.volver{
+  display:inline-flex;align-items:center;gap:.55rem;
+  font-family:var(--mono),var(--cuerpo);font-size:.75rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gris);text-decoration:none;
+  transition:gap .25s ease,color .25s ease;
+}
+.volver .flecha{transition:transform .25s ease}
+.volver:hover{color:var(--tinta)}
+.volver:hover .flecha{transform:translateX(-4px)}
+
+.caso-hero{padding-block:clamp(2.5rem,6vw,4rem) clamp(2.5rem,5vw,4rem)}
+.caso-hero__rotulo{
+  font-family:var(--mono),var(--cuerpo);
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gris);margin:clamp(2rem,4vw,3rem) 0 clamp(1.5rem,3vw,2.25rem);
+  display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;
+}
+.punto{width:6px;height:6px;border-radius:50%;background:var(--naranja);flex:none}
+.caso-hero h1{
+  font-size:clamp(2.3rem,1.3rem + 4.2vw,4.2rem);
+  font-weight:500;max-width:19ch;margin-bottom:clamp(1.5rem,3vw,2.1rem);
+}
+.caso-hero__intro{
+  font-size:clamp(1.1rem,1rem + .55vw,1.35rem);line-height:1.5;
+  font-weight:300;color:var(--texto);max-width:54ch;margin-bottom:clamp(1.75rem,3vw,2.25rem);
+}
+.caso-hero__intro b{font-weight:500;color:var(--tinta)}
+.caso-hero__apoyo{font-size:.92rem;color:var(--texto-sutil);max-width:48ch;margin-top:1.25rem}
+
+/* --- escena interactiva del hero --------------------------------------- */
+.caso-hero{position:relative;overflow:hidden;min-height:clamp(42rem,78vh,56rem)}
+.caso-hero .env{position:relative;z-index:2;min-height:clamp(42rem,78vh,56rem)}
+.caso-hero__texto{position:relative;z-index:2;max-width:47rem;padding-block:clamp(3rem,10vh,8rem)}
+.hero-escena{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.hero-escena::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,var(--papel) 0%,var(--papel) 34%,rgba(241,241,240,.96) 48%,rgba(241,241,240,.42) 63%,transparent 82%);
+}
+.hero-escena::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.3;
+  background-image:radial-gradient(circle,rgba(0,207,207,.5) 1px,transparent 1.4px);background-size:9px 9px;
+  -webkit-mask-image:radial-gradient(ellipse 50% 68% at 77% 50%,#000 0%,rgba(0,0,0,.78) 45%,transparent 80%);
+  mask-image:radial-gradient(ellipse 50% 68% at 77% 50%,#000 0%,rgba(0,0,0,.78) 45%,transparent 80%);
+}
+#hero-escena-canvas{display:block;width:100%;height:100%;position:absolute;inset:0}
+.hero-escena__nota{position:absolute;right:4%;bottom:8%;z-index:2;font-family:var(--mono),var(--cuerpo);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gris);opacity:.75}
+@media (max-width:60rem){
+  .caso-hero,.caso-hero .env{min-height:clamp(43rem,100svh,58rem)}
+  .caso-hero__texto{padding-block:clamp(2.5rem,8vh,5rem) 3rem}
+  .hero-escena::before{background:linear-gradient(180deg,var(--papel) 0%,rgba(241,241,240,.94) 32%,rgba(241,241,240,.18) 69%,transparent 100%)}
+  .hero-escena::after{-webkit-mask-image:radial-gradient(ellipse 72% 52% at 56% 35%,#000 0%,rgba(0,0,0,.7) 52%,transparent 84%);mask-image:radial-gradient(ellipse 72% 52% at 56% 35%,#000 0%,rgba(0,0,0,.7) 52%,transparent 84%)}
+}
+@media (max-width:44rem){.hero-escena__nota{right:7%;bottom:5%;font-size:.56rem}}
+@media (prefers-reduced-motion:reduce){#hero-escena-canvas{cursor:default}}
+
+/* ficha del proyecto */
+.ficha{border-block:1px solid var(--linea);background:var(--papel-sutil)}
+.ficha .env{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:0;
+  padding-block:0;
+}
+.ficha__item{padding:1.9rem 1rem 1.9rem 1.5rem;border-left:1px solid var(--linea)}
+.ficha__item:first-child{padding-left:0;border-left:0}
+.ficha__item dt{
+  font-family:var(--mono),var(--cuerpo);font-size:.66rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gris);margin-bottom:.65rem;
+}
+.ficha__item dd{
+  margin:0;font-family:var(--titulo);font-weight:500;font-size:1.08rem;
+  letter-spacing:-.015em;line-height:1.25;
+}
+@media (max-width:44rem){
+  .ficha .env{grid-template-columns:1fr 1fr}
+  .ficha__item{padding:1.4rem 1.25rem 1.4rem 1.25rem}
+  .ficha__item:nth-child(odd){padding-left:0;border-left:0}
+  .ficha__item:nth-child(n+3){border-top:1px solid var(--linea)}
+}
+
+/* --- capítulos: índice de navegación + panel de contenido activo ---------
+   Componente nuevo (ver también sistema-diseno.html). Sustituye al scroll
+   lineal por capítulos 01–09 que se activan uno a uno: índice numerado a
+   la derecha en desktop, contenido del capítulo activo a la izquierda.
+   El cierre (antes "10") queda fuera del índice — sigue siendo scroll
+   normal, para que el CTA final nunca quede escondido tras varios clics. */
+.capitulos-wrap{border-top:1px solid var(--linea);scroll-margin-top:6rem}
+.capitulos-layout{
+  display:grid;grid-template-columns:1fr 15rem;gap:clamp(2rem,5vw,4rem);
+  align-items:start;padding-block:clamp(3rem,6vw,4.5rem);
+}
+@media (max-width:60rem){
+  .capitulos-layout{grid-template-columns:1fr 3.25rem;gap:1.5rem}
+}
+
+.capitulos-contenido{min-width:0}
+.capitulo-panel{animation:capitulo-entra .5s cubic-bezier(.22,1,.36,1)}
+@keyframes capitulo-entra{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.capitulo-panel h2{font-size:clamp(1.8rem,1.35rem + 1.8vw,2.9rem);max-width:20ch;margin-bottom:1.25rem}
+.capitulo-panel__lead{color:var(--texto);max-width:56ch;font-size:clamp(1.02rem,1rem + .3vw,1.2rem);font-weight:300}
+.capitulo-panel__lead b{color:var(--tinta);font-weight:500}
+.capitulo-panel__lead + .capitulo-panel__lead{margin-top:1em}
+.capitulo-panel[data-capitulo="07"]{
+  background:var(--tinta);color:var(--papel);
+  padding:clamp(1.75rem,4vw,2.5rem);border-radius:var(--radio-md);
+}
+.capitulo-panel[data-capitulo="07"] h2{color:var(--papel)}
+
+/* índice lateral */
+.capitulos-nav{position:sticky;top:6.5rem}
+.capitulos-nav ol{list-style:none;margin:0;padding:0;position:relative;padding-left:1.5rem}
+.capitulos-nav__rail{
+  position:absolute;left:0;top:.35rem;bottom:.35rem;width:2px;
+  background:var(--linea);border-radius:2px;overflow:hidden;
+}
+.capitulos-nav__rail::after{
+  content:"";position:absolute;left:0;top:-45%;width:100%;height:45%;
+  background:linear-gradient(to bottom,transparent,var(--azul),transparent);
+  animation:capitulos-fluye 6s linear infinite;
+}
+@keyframes capitulos-fluye{from{transform:translateY(0)}to{transform:translateY(320%)}}
+
+.capitulo-btn{
+  display:flex;align-items:baseline;gap:.7rem;width:100%;
+  background:none;border:0;padding:.55rem 0;margin:0;cursor:pointer;
+  text-align:left;font-family:var(--cuerpo);
+}
+.capitulo-btn__n{
+  font-family:var(--titulo);font-weight:500;line-height:1.06;letter-spacing:-.028em;
+  font-size:1.15rem;color:var(--tinta);flex:none;
+}
+.capitulo-btn__label{
+  font-size:.86rem;color:var(--texto-sutil);line-height:1.3;
+  transition:color .25s ease;
+}
+.capitulo-btn:hover .capitulo-btn__label{color:var(--tinta)}
+.capitulo-btn.is-active .capitulo-btn__label{color:var(--tinta);font-weight:500}
+@media (max-width:60rem){
+  .capitulo-btn{justify-content:center}
+  .capitulo-btn__label{display:none}
+}
+
+/* lista de bullets simple, reutilizada para preguntas y features */
+.lista{list-style:none;margin:clamp(1.5rem,3vw,2.25rem) 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));
+  gap:.75rem 2.5rem;
+}
+.lista li{
+  padding-left:1.3rem;position:relative;color:var(--texto);
+  font-size:1rem;line-height:1.45;
+}
+.lista li::before{content:"";position:absolute;left:0;top:.62em;width:.9rem;height:1px;background:var(--naranja)}
+
+.pasos{border-top:1px solid var(--linea);margin-top:clamp(2.5rem,5vw,3.5rem)}
+.paso{
+  display:grid;grid-template-columns:auto 1fr;gap:clamp(1.25rem,4vw,3rem);
+  padding:clamp(1.75rem,3.5vw,2.5rem) 0;border-bottom:1px solid var(--linea);
+}
+.paso__n{font-family:var(--mono),var(--cuerpo);font-size:.72rem;letter-spacing:.18em;color:var(--naranja);padding-top:.45rem;white-space:nowrap}
+.paso h3{font-size:clamp(1.2rem,1.05rem + .6vw,1.55rem);font-weight:500;letter-spacing:-.02em;margin-bottom:.5rem;max-width:30ch}
+.paso p{color:var(--texto);max-width:58ch;font-size:1rem}
+@media (max-width:44rem){.paso{grid-template-columns:1fr;gap:.6rem}.paso__n{padding-top:0}}
+.inverso .paso p{color:rgba(241,241,240,.78)}
+
+.hallazgo__lead{
+  font-size:clamp(1.1rem,1rem + .55vw,1.4rem);font-family:var(--titulo);font-weight:300;
+  line-height:1.42;letter-spacing:-.02em;max-width:46ch;
+  color:rgba(241,241,240,.92);
+}
+.hallazgo__lead b{color:var(--naranja);font-weight:400}
+.hallazgo__cierre{color:rgba(241,241,240,.7);max-width:52ch;font-size:1rem;margin-top:clamp(1.5rem,3vw,2rem)}
+.hallazgo__cierre b{color:var(--papel);font-weight:500}
+
+/* cierre */
+.cierre{text-align:left}
+.cierre h2{font-size:clamp(2.1rem,1.5rem + 2.6vw,3.7rem);max-width:16ch;margin-bottom:1.5rem}
+.cierre p:not(.rotulo){
+  font-size:clamp(1.05rem,1rem + .4vw,1.3rem);font-weight:300;line-height:1.5;
+  max-width:48ch;color:rgba(241,241,240,.78);margin-bottom:clamp(2.25rem,4vw,3rem);
+}
+.cierre__acciones{display:flex;flex-wrap:wrap;gap:1rem 1.75rem;align-items:center}
+.cierre__directo .enlace{color:var(--papel);border-color:var(--linea-inv)}
+.cierre__directo .enlace:hover{border-color:var(--papel)}
+
+@media (prefers-reduced-motion:reduce){
+  html:focus-within{scroll-behavior:auto}
+  .aparece{opacity:1;transform:none;transition:none}
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important}
+}
+@media print{
+  .cabecera{display:none}
+  .capitulos-nav{display:none}
+  .capitulo-panel[hidden]{display:block !important;animation:none}
+  body{background:#fff}
+  .inverso{background:#fff;color:#333}
+}
+</style>
+</head>
+<body>
+
+<!-- ====================== CABECERA ====================== -->
+<header class="cabecera" id="cabecera">
+  <div class="env">
+    <a class="marca" href="/" aria-label="Blas Ruiz — inicio">
+      <svg viewBox="0 0 394 394" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path fill="#333333" d="M70.41,354c-23.73,0-43.04-19.31-43.04-43.04V83.04c0-23.73,19.31-43.04,43.04-43.04h175.21c51.76,0,94.71,41.23,95.73,91.92.33,16.22-3.54,32.27-11.19,46.42l-2.82,5.22,4.61,3.74c22.37,18.18,35.01,45.13,34.68,73.95-.59,51.14-43.52,92.75-95.69,92.75H70.41ZM88.82,298.87h177.63c21.35,0,38.73-17.38,38.73-38.73s-17.38-38.73-38.73-38.73H88.82v77.46ZM88.82,167.36h155.08c19.86,0,36.02-16.16,36.02-36.02s-16.16-36.02-36.02-36.02H88.82v72.05Z"/>
+      </svg>
+    </a>
+    <nav class="nav" aria-label="Navegación principal">
+      <a class="oculta-movil" href="/#caso">Casos</a>
+      <a class="oculta-movil" href="/#servicios">Servicios</a>
+      <a class="oculta-movil" href="/#bio">Sobre mí</a>
+      <a class="oculta-movil" href="https://blasruiz.myportfolio.com/" target="_blank" rel="noopener">Portfolio</a>
+      <a class="btn btn--sm" href="#contacto">Cuéntame qué se repite <span class="flecha" aria-hidden="true">→</span></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ====================== HERO ====================== -->
+  <section class="caso-hero">
+    <div class="env">
+      <div class="caso-hero__texto">
+        <a class="volver" href="/"><span class="flecha" aria-hidden="true">←</span> blasruiz.es</a>
+        <p class="caso-hero__rotulo"><span class="punto" aria-hidden="true"></span>Caso real · Integración audiovisual (eventos e instalaciones)</p>
+        <h1>De Excel, WhatsApp y notas sueltas a una herramienta que sabe cómo funciona el negocio</h1>
+        <p class="caso-hero__intro">Una empresa de integración audiovisual necesitaba dejar de gestionar cada proyecto en un sitio distinto. Construimos una aplicación a medida para reunir proyectos, presupuestos, materiales, equipo y facturación en un solo lugar. <b>El siguiente paso es añadir una capa de IA</b> que permita consultar la base de datos con preguntas normales, sin buscar pantalla por pantalla.</p>
+        <a class="btn" href="#cap-03">Ver cómo se construyó <span class="flecha" aria-hidden="true">→</span></a>
+        <p class="caso-hero__apoyo">Un caso real de diseño, desarrollo y organización de procesos para una empresa audiovisual que trabaja en instalaciones, mantenimientos y eventos.</p>
+      </div>
+    </div>
+    <div class="hero-escena" role="img" aria-label="Esfera transparente con elementos audiovisuales y módulos de información conectados">
+      <canvas id="hero-escena-canvas"></canvas>
+      <span class="hero-escena__nota">mueve el cursor dentro de la esfera</span>
+    </div>
+  </section>
+
+  <!-- ====================== FICHA ====================== -->
+  <section class="ficha">
+    <div class="env">
+      <div class="ficha__item"><dt>Cliente</dt><dd>Integración audiovisual<br>(caso anonimizado)</dd></div>
+      <div class="ficha__item"><dt>Punto de partida</dt><dd>Excel, WhatsApp<br>y notas sueltas</dd></div>
+      <div class="ficha__item"><dt>Alcance</dt><dd>Eventos, instalaciones<br>y mantenimiento</dd></div>
+      <div class="ficha__item"><dt>Encargo</dt><dd>Sistema propio<br>+ capa de IA futura</dd></div>
+    </div>
+  </section>
+
+  <!-- ====================== CAPÍTULOS 01–09 ====================== -->
+  <section class="capitulos-wrap" id="capitulos">
+    <div class="env capitulos-layout">
+
+      <div class="capitulos-contenido">
+
+        <article class="capitulo-panel" data-capitulo="01" id="cap-01" aria-labelledby="capbtn-01">
+          <p class="rotulo">01 · El problema, tal y como llega</p>
+          <h2>Cada proyecto obligaba a reconstruir la información anterior</h2>
+          <p class="capitulo-panel__lead">Antes de empezar, la información estaba repartida entre archivos de Excel, conversaciones de WhatsApp, correos, llamadas, notas en el móvil y libretas de papel. El problema no era que faltase trabajo. Era que había que responder continuamente a las mismas preguntas.</p>
+          <ul class="lista">
+            <li>¿Qué se presupuestó exactamente?</li>
+            <li>¿Qué material está disponible y dónde estuvo la última vez?</li>
+            <li>¿Quién participa en el proyecto?</li>
+            <li>¿Qué horas se han trabajado?</li>
+            <li>¿Qué queda por facturar?</li>
+            <li>¿Qué instalaciones tienen mantenimiento pendiente?</li>
+          </ul>
+        </article>
+
+        <article class="capitulo-panel" data-capitulo="02" id="cap-02" aria-labelledby="capbtn-02" hidden>
+          <p class="rotulo">02 · Qué se promete</p>
+          <h2>Convertir la forma real de trabajar en un sistema, no una capa bonita encima</h2>
+          <p class="capitulo-panel__lead">La propuesta fue construir una aplicación propia, por fases, alrededor de los procesos reales de la empresa.</p>
+          <div class="pasos">
+            <article class="paso">
+              <div class="paso__n">01</div>
+              <div><h3>Reunir la información en una base de datos común</h3></div>
+            </article>
+            <article class="paso">
+              <div class="paso__n">02</div>
+              <div><h3>Convertir los pasos repetidos en pantallas y reglas claras</h3></div>
+            </article>
+            <article class="paso">
+              <div class="paso__n">03</div>
+              <div><h3>Mantener espacio para las excepciones que solo conoce el equipo</h3></div>
+            </article>
+            <article class="paso">
+              <div class="paso__n">04</div>
+              <div><h3>Dejar preparada una base sobre la que añadir nuevas áreas sin rehacerlo todo</h3></div>
+            </article>
+          </div>
+          <p class="capitulo-panel__lead" style="margin-top:2rem"><b>La primera versión no intenta imponer un proceso inventado.</b> Parte de cómo trabajan y ordena lo que ya existe.</p>
+        </article>
+
+        <article class="capitulo-panel" data-capitulo="03" id="cap-03" aria-labelledby="capbtn-03" hidden>
+          <p class="rotulo">03 · El caso</p>
+          <h2>Empezamos por lo más acotado, sin aislarlo del resto</h2>
+          <p class="capitulo-panel__lead">La empresa gestiona instalaciones fijas, mantenimientos y eventos con alquiler y montaje de equipos. El sistema se empezó por <b>Eventos</b>, porque era el proceso más acotado y permitía probar un flujo completo: petición, presupuesto, aceptación, preparación del material, montaje, devolución y cierre.</p>
+          <p class="capitulo-panel__lead">Pero la base no se construyó como una aplicación aislada para eventos. La entidad central es el <b>proyecto</b>, con una estructura preparada para incorporar Instalaciones y Mantenimiento cuando cada módulo tenga su propio flujo.</p>
+        </article>
+
+        <article class="capitulo-panel" data-capitulo="04" id="cap-04" aria-labelledby="capbtn-04" hidden>
+          <p class="rotulo">04 · Punto de salida</p>
+          <h2>De herramientas separadas a una sola fuente</h2>
+          <p class="capitulo-panel__lead">Un Excel para una parte, WhatsApp para otra, notas de móvil para recordar algo durante una visita y papel para lo que ocurría en la nave o en el montaje. Ese sistema puede aguantar mientras el volumen es pequeño y las mismas personas lo tienen todo en la cabeza.</p>
+          <p class="capitulo-panel__lead">Empieza a fallar cuando hay proyectos simultáneos, material que sale y vuelve, varias personas participando y decisiones que deben quedar disponibles para el resto del equipo. <b>El encargo no fue «hacer una app».</b> Fue averiguar qué información necesitaba realmente el negocio y qué debía ocurrir en cada momento.</p>
+        </article>
+
+        <article class="capitulo-panel" data-capitulo="05" id="cap-05" aria-labelledby="capbtn-05" hidden>
+          <p class="rotulo">05 · Lo que estamos montando</p>
+          <h2>Todo lo que antes vivía en cinco sitios distintos</h2>
+          <p class="capitulo-panel__lead">La aplicación centraliza:</p>
+          <ul class="lista">
+            <li>Clientes, contactos, proveedores y acreedores</li>
+            <li>Proyectos con fechas, sedes, responsables y participantes</li>
+            <li>Catálogo comercial para generar presupuestos sin reescribirlo todo</li>
+            <li>Inventario y movimientos de material</li>
+            <li>Reservas por rango de fechas — montaje, devolución, desplazamiento</li>
+            <li>Calendario de proyectos</li>
+            <li>Fichaje de horas desde móvil</li>
+            <li>Presupuestos y facturación</li>
+            <li>Incidencias, reparaciones, albaranes e informes</li>
+          </ul>
+          <p class="capitulo-panel__lead" style="margin-top:2rem">Web responsive: la oficina trabaja desde escritorio, el equipo consulta desde tablet y cada persona ficha desde el móvil.</p>
+        </article>
+
+        <article class="capitulo-panel" data-capitulo="06" id="cap-06" aria-labelledby="capbtn-06" hidden>
+          <p class="rotulo">06 · Lo que queda preparado para después</p>
+          <h2>La base ya está pensada para crecer por módulos</h2>
+          <ul class="lista">
+            <li>Módulo de Instalaciones — visitas de obra, documentación, actas de recepción</li>
+            <li>Módulo de Mantenimientos — contratos anuales, visitas periódicas</li>
+            <li>Más detalle de facturación, cobros y seguimiento económico</li>
+            <li>Carga y validación de los datos reales de clientes y catálogo</li>
+            <li>Una capa de IA conectada a la base de datos operativa</li>
+          </ul>
+        </article>
+
+        <article class="capitulo-panel inverso" data-capitulo="07" id="cap-07" aria-labelledby="capbtn-07" hidden>
+          <p class="rotulo">07 · La capa de IA</p>
+          <h2 style="max-width:22ch">La IA no se añade para que el proyecto parezca más moderno</h2>
+          <p class="hallazgo__lead">Su utilidad concreta sería poder preguntar:</p>
+          <div class="citas">
+            <blockquote class="cita">«¿Qué proyectos tenemos la semana que viene y qué material está comprometido?»</blockquote>
+            <blockquote class="cita">«¿Qué clientes tienen presupuestos pendientes de aceptar?»</blockquote>
+            <blockquote class="cita">«¿Qué instalaciones tienen un mantenimiento asociado?»</blockquote>
+          </div>
+          <p class="hallazgo__cierre">La respuesta saldría de la base de datos que ya organiza la aplicación. No de una conversación aislada ni de un documento desactualizado. <b>El sistema no sustituye la base de datos ni decide por su cuenta.</b> Añade una forma más natural de consultar la información que el equipo ya necesita.</p>
+        </article>
+
+        <article class="capitulo-panel" data-capitulo="08" id="cap-08" aria-labelledby="capbtn-08" hidden>
+          <p class="rotulo">08 · Tres resultados</p>
+          <div class="pasos">
+            <article class="paso">
+              <div class="paso__n">RESULTADO 01</div>
+              <div>
+                <h3>Una única fuente de información</h3>
+                <p>El estado de un proyecto deja de depender de cinco sitios distintos. Clientes, fechas, material, personas, horas, presupuestos y facturas forman parte del mismo sistema.</p>
+              </div>
+            </article>
+            <article class="paso">
+              <div class="paso__n">RESULTADO 02</div>
+              <div>
+                <h3>El proceso se puede ver y repetir</h3>
+                <p>La aplicación hace visibles pasos que antes estaban en la experiencia de cada persona: qué se reserva, cuándo sale el material, quién participa y qué falta para cerrar el proyecto.</p>
+              </div>
+            </article>
+            <article class="paso">
+              <div class="paso__n">RESULTADO 03</div>
+              <div>
+                <p>La IA no se incorpora a ciegas. Primero existe una base de datos con estructura y relaciones. Después se puede consultar esa información sin convertir cada respuesta en una búsqueda manual.</p>
+              </div>
+            </article>
+          </div>
+        </article>
+
+        <article class="capitulo-panel" data-capitulo="09" id="cap-09" aria-labelledby="capbtn-09" hidden>
+          <p class="rotulo">09 · Una explicación del método</p>
+          <h2>Construir la herramienta fue solo una parte del trabajo</h2>
+          <p class="capitulo-panel__lead">Primero reconstruimos un evento real de principio a fin. Después separamos lo común de lo específico: qué ocurre en cualquier proyecto, qué cambia entre Eventos, Instalaciones y Mantenimiento, y qué decisiones no debía tomar nunca el sistema sin consultar a una persona.</p>
+          <p class="capitulo-panel__lead">Con esa información se diseñaron el modelo de datos, los flujos y las pantallas. La aplicación se construyó por fases y se probó con datos ficticios antes de cargar los datos reales. <b>El resultado no es una colección de formularios.</b> Es una traducción del funcionamiento de la empresa a una herramienta que el equipo puede consultar, completar y ampliar.</p>
+        </article>
+
+      </div>
+
+      <nav class="capitulos-nav" aria-label="Índice de capítulos">
+        <div class="capitulos-nav__rail" aria-hidden="true"></div>
+        <ol>
+          <li><button type="button" class="capitulo-btn is-active" id="capbtn-01" data-capitulo="01" aria-current="true"><span class="capitulo-btn__n">01</span><span class="capitulo-btn__label">El problema, tal y como llega</span></button></li>
+          <li><button type="button" class="capitulo-btn" id="capbtn-02" data-capitulo="02"><span class="capitulo-btn__n">02</span><span class="capitulo-btn__label">Qué se promete</span></button></li>
+          <li><button type="button" class="capitulo-btn" id="capbtn-03" data-capitulo="03"><span class="capitulo-btn__n">03</span><span class="capitulo-btn__label">El caso</span></button></li>
+          <li><button type="button" class="capitulo-btn" id="capbtn-04" data-capitulo="04"><span class="capitulo-btn__n">04</span><span class="capitulo-btn__label">Punto de salida</span></button></li>
+          <li><button type="button" class="capitulo-btn" id="capbtn-05" data-capitulo="05"><span class="capitulo-btn__n">05</span><span class="capitulo-btn__label">Lo que estamos montando</span></button></li>
+          <li><button type="button" class="capitulo-btn" id="capbtn-06" data-capitulo="06"><span class="capitulo-btn__n">06</span><span class="capitulo-btn__label">Lo que queda preparado</span></button></li>
+          <li><button type="button" class="capitulo-btn" id="capbtn-07" data-capitulo="07"><span class="capitulo-btn__n">07</span><span class="capitulo-btn__label">La capa de IA</span></button></li>
+          <li><button type="button" class="capitulo-btn" id="capbtn-08" data-capitulo="08"><span class="capitulo-btn__n">08</span><span class="capitulo-btn__label">Tres resultados</span></button></li>
+          <li><button type="button" class="capitulo-btn" id="capbtn-09" data-capitulo="09"><span class="capitulo-btn__n">09</span><span class="capitulo-btn__label">Una explicación del método</span></button></li>
+        </ol>
+      </nav>
+
+    </div>
+  </section>
+
+  <!-- ====================== CIERRE ====================== -->
+  <section class="seccion inverso cierre" id="contacto">
+    <div class="env">
+      <p class="rotulo aparece">Siguiente paso</p>
+      <h2 class="aparece">¿Tu empresa también funciona con Excel, mensajes y memoria?</h2>
+      <p class="aparece">No hace falta empezar pensando en una gran transformación digital. Basta con localizar un proceso que se repite, que cruza varios archivos y que obliga a preguntar siempre a la misma persona.</p>
+      <div class="cierre__acciones aparece">
+        <a class="btn" href="https://calendly.com/blas-ruiz1/15min" target="_blank" rel="noopener">Cuéntame qué se repite cada temporada <span class="flecha" aria-hidden="true">→</span></a>
+      </div>
+      <p class="cierre__nota cierre__directo aparece" style="margin-top:1.5rem"><a class="enlace" href="/caso-catalogo/">Ver otro caso real <span aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ====================== PIE ====================== -->
+<footer class="pie">
+  <div class="env">
+    <small>© <span id="anyo">2026</span> Blas Ruiz · Diseño y producción visual</small>
+    <nav aria-label="Enlaces del pie">
+      <a href="/">blasruiz.es</a>
+      <a href="mailto:blas.ruiz1@gmail.com">blas.ruiz1@gmail.com</a>
+      <a href="tel:+34637161279">+34 637 161 279</a>
+      <a class="icono-social" href="https://www.linkedin.com/in/blasruiz/" target="_blank" rel="noopener" aria-label="LinkedIn de Blas Ruiz"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  document.getElementById('anyo').textContent = new Date().getFullYear();
+
+  var cabecera = document.getElementById('cabecera');
+  var marcaScroll = function(){
+    cabecera.classList.toggle('pegada', window.scrollY > 8);
+  };
+  marcaScroll();
+  window.addEventListener('scroll', marcaScroll, {passive:true});
+
+  /* --- esfera interior: OBJ + objetos wireframe con cámara en el centro --- */
+  var lienzo = document.getElementById('hero-escena-canvas');
+  var escena = lienzo ? lienzo.parentNode : null;
+  var hero = document.querySelector('.caso-hero');
+  if (lienzo && escena && hero) {
+    var reducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var objetivo = {x:0,y:0}, actual = {x:0,y:0};
+    var urls = [
+      'https://esm.sh/three@0.161.0',
+      'https://esm.sh/three@0.161.0/examples/jsm/loaders/OBJLoader.js?deps=three@0.161.0'
+    ];
+
+    function puntosPanel(THREE, ancho, alto, color){
+      var posiciones=[];
+      for(var y=0;y<8;y++) for(var x=0;x<16;x++) posiciones.push((x/15-.5)*ancho,(y/7-.5)*alto,0);
+      var geometria=new THREE.BufferGeometry();geometria.setAttribute('position',new THREE.Float32BufferAttribute(posiciones,3));
+      return new THREE.Points(geometria,new THREE.PointsMaterial({color:color,size:.075,transparent:true,opacity:.92,sizeAttenuation:true,depthTest:false,depthWrite:false}));
+    }
+    function lineBox(THREE,w,h,d,color){
+      return new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.BoxGeometry(w,h,d)),new THREE.LineBasicMaterial({color:color,transparent:true,opacity:1,depthTest:false,depthWrite:false}));
+    }
+    function crearLed(THREE){
+      var g=new THREE.Group(),b=lineBox(THREE,2.6,1.45,.18,0x00cfcf);g.add(b);var p=puntosPanel(THREE,2.35,1.17,0x00cfcf);p.position.z=-.105;g.add(p);return g;
+    }
+    function crearAltavoz(THREE){
+      var g=new THREE.Group();for(var i=0;i<4;i++){var b=lineBox(THREE,1.6,.58,.72,0x333333);b.position.y=(i-1.5)*.62;g.add(b);var p=puntosPanel(THREE,1.35,.43,0x00cfcf);p.position.set(0,b.position.y,-.37);g.add(p);}return g;
+    }
+    function crearFoco(THREE){
+      var g=new THREE.Group(),base=lineBox(THREE,1.05,.3,.72,0xff8666),yugo=lineBox(THREE,.22,1.55,.2,0xff8666),cuerpo=new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.CylinderGeometry(.5,.36,.75,8)),new THREE.LineBasicMaterial({color:0xff8666,transparent:true,opacity:.9}));
+      base.position.y=-.82;yugo.position.y=-.05;cuerpo.rotation.z=Math.PI/2;cuerpo.position.set(.18,.52,0);g.add(base,yugo,cuerpo);return g;
+    }
+    function colocar(THREE,grupo,normal,escala){
+      var n=normal.clone().normalize();grupo.position.copy(n.multiplyScalar(5.75));grupo.scale.setScalar(escala);grupo.lookAt(0,0,0);return grupo;
+    }
+    Promise.all(urls.map(function(u){return import(u);})).then(function(modulos){
+      var THREE=modulos[0],OBJLoader=modulos[1].OBJLoader;
+      var renderer=new THREE.WebGLRenderer({canvas:lienzo,alpha:true,antialias:true,powerPreference:'high-performance'});
+      renderer.setPixelRatio(Math.min(1.5,window.devicePixelRatio||1));renderer.setClearColor(0x000000,0);
+      var mundo=new THREE.Scene(),camara=new THREE.PerspectiveCamera(62,1,.05,100);
+      var posicionCamara=new THREE.Vector3(1.625,0,.08); /* ≈ 1/4 del radio de la esfera hacia la derecha */
+      var conoMaximo=35*Math.PI/180;
+      camara.position.copy(posicionCamara);
+      var contenedor=new THREE.Group();mundo.add(contenedor);
+      var esfera=new THREE.Group();contenedor.add(esfera);
+      new OBJLoader().load('../assets/sfera.obj',function(obj){
+        var caja=new THREE.Box3().setFromObject(obj),centro=caja.getCenter(new THREE.Vector3()),tamano=caja.getSize(new THREE.Vector3()),maximo=Math.max(tamano.x,tamano.y,tamano.z);
+        obj.position.sub(centro);obj.traverse(function(n){if(!n.isMesh)return;var lineas=new THREE.LineSegments(new THREE.WireframeGeometry(n.geometry),new THREE.LineBasicMaterial({color:0x333333,transparent:true,opacity:.31,depthWrite:false}));lineas.scale.setScalar(13/maximo);esfera.add(lineas);});
+      },undefined,function(){esfera.add(new THREE.LineSegments(new THREE.WireframeGeometry(new THREE.SphereGeometry(6.4,32,20)),new THREE.LineBasicMaterial({color:0x333333,transparent:true,opacity:.28})));});
+      /* La cámara mira hacia -Z: los equipos viven en la semiesfera frontal. */
+      esfera.add(colocar(THREE,crearLed(THREE),new THREE.Vector3(.42,.22,-.88),.72));
+      esfera.add(colocar(THREE,crearAltavoz(THREE),new THREE.Vector3(.65,.1,-.74),.6));
+      esfera.add(colocar(THREE,crearFoco(THREE),new THREE.Vector3(.38,-.18,-.91),.75));
+      esfera.add(colocar(THREE,crearLed(THREE),new THREE.Vector3(.2,-.35,-.9),.5));
+      esfera.add(colocar(THREE,crearAltavoz(THREE),new THREE.Vector3(.35,.35,-.86),.45));
+      var ancho=1,alto=1,raf=0,tiempo=0;
+      function ajustar(){var r=escena.getBoundingClientRect();ancho=Math.max(1,r.width);alto=Math.max(1,r.height);renderer.setSize(ancho,alto,false);camara.aspect=ancho/alto;camara.updateProjectionMatrix();}
+      function render(){
+        tiempo+=reducido?0:.004;
+        actual.x+=(objetivo.x-actual.x)*.045;actual.y+=(objetivo.y-actual.y)*.045;
+        /* El puntero solo orienta la cámara dentro de un cono de 35º. */
+        var radio=Math.hypot(actual.x,actual.y),direccionX=0,direccionY=0;
+        if(radio>.001){direccionX=actual.x/radio;direccionY=actual.y/radio;}
+        var giro=Math.min(radio,1)*conoMaximo;
+        contenedor.rotation.y=Math.sin(tiempo)*.018;
+        contenedor.rotation.x=Math.cos(tiempo*.7)*.012;
+        /* La posición queda desplazada, pero la vista base sigue mirando hacia delante. */
+        camara.position.copy(posicionCamara);camara.lookAt(posicionCamara.x,posicionCamara.y,posicionCamara.z-10);
+        camara.rotateY(direccionX*giro);camara.rotateX(-direccionY*giro);
+        renderer.render(mundo,camara);
+        if(!reducido)raf=requestAnimationFrame(render);
+      }
+      hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();objetivo.x=((e.clientX-r.left)/r.width-.5)*2;objetivo.y=((e.clientY-r.top)/r.height-.5)*2;},{passive:true});
+      hero.addEventListener('pointerleave',function(){objetivo.x=0;objetivo.y=0;},{passive:true});
+      window.addEventListener('resize',function(){ajustar();if(reducido)render();},{passive:true});ajustar();render();
+    }).catch(function(){lienzo.setAttribute('aria-hidden','true');});
+  }
+
+  /* --- capítulos: activa un panel, oculta el resto, actualiza el índice --- */
+  var paneles = document.querySelectorAll('.capitulo-panel');
+  var botones = document.querySelectorAll('.capitulo-btn');
+  var capitulosLayout = document.querySelector('.capitulos-layout');
+
+  function activarCapitulo(n, mover){
+    paneles.forEach(function(p){ p.hidden = p.dataset.capitulo !== n; });
+    botones.forEach(function(b){
+      var activo = b.dataset.capitulo === n;
+      b.classList.toggle('is-active', activo);
+      b.setAttribute('aria-current', activo ? 'true' : 'false');
+    });
+    if (mover !== false) history.replaceState(null, '', '#cap-' + n);
+  }
+
+  botones.forEach(function(b){
+    b.addEventListener('click', function(){ activarCapitulo(b.dataset.capitulo); });
+  });
+
+  /* enlaces sueltos que apuntan a un capítulo (p. ej. el CTA del hero) */
+  document.querySelectorAll('a[href^="#cap-"]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var n = a.getAttribute('href').replace('#cap-', '');
+      activarCapitulo(n);
+      if (capitulosLayout) capitulosLayout.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
+  var inicial = (location.hash.match(/^#cap-(\d\d)/) || [])[1] || '01';
+  activarCapitulo(inicial, false);
+
+  /* aparición progresiva — solo queda en el cierre */
+  var elementos = document.querySelectorAll('.aparece');
+  if (!('IntersectionObserver' in window) ||
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    elementos.forEach(function(el){ el.classList.add('visible'); });
+    return;
+  }
+
+  var observador = new IntersectionObserver(function(entradas){
+    entradas.forEach(function(entrada){
+      if (!entrada.isIntersecting) return;
+      var hermanos = Array.prototype.slice.call(
+        entrada.target.parentNode.querySelectorAll(':scope > .aparece')
+      );
+      var retardo = Math.min(hermanos.indexOf(entrada.target), 5) * 80;
+      setTimeout(function(){ entrada.target.classList.add('visible'); }, Math.max(retardo, 0));
+      observador.unobserve(entrada.target);
+    });
+  }, {rootMargin:'0px 0px -12% 0px', threshold:0.08});
+
+  elementos.forEach(function(el){ observador.observe(el); });
+})();
+</script>
+
+</body>
+</html>
