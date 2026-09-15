@@ -173,10 +173,34 @@ p:last-child{margin-bottom:0}
   display:flex;align-items:center;justify-content:space-between;
   gap:1.5rem;min-height:5rem;
 }
+.cabecera__izq{display:flex;align-items:center;gap:.65rem}
 .marca{display:flex;align-items:center;gap:.85rem;text-decoration:none}
 .marca svg{width:26px;height:26px;flex:none}
 .marca b{font-family:var(--titulo);font-size:1.06rem;font-weight:600;letter-spacing:-.02em}
 .marca span{color:var(--gris);font-size:1.06rem;font-weight:300;letter-spacing:-.02em;font-family:var(--titulo)}
+
+.menu-btn{
+  display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;
+  width:2.25rem;height:2.25rem;padding:0;margin:0;border:0;background:none;
+  cursor:pointer;flex:none;-webkit-tap-highlight-color:transparent;
+}
+.menu-btn span{
+  display:block;width:1.15rem;height:2px;border-radius:2px;background:var(--tinta);
+  transition:transform .25s ease,opacity .25s ease;
+}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.menu-movil{
+  display:none;flex-direction:column;
+  padding:0 var(--marco) 1.25rem;
+}
+.menu-movil a{
+  text-decoration:none;color:var(--tinta);font-size:1rem;font-weight:400;
+  padding:.9rem 0;border-bottom:1px solid var(--linea);
+}
+.menu-movil.abierto{display:flex}
 
 .nav{display:flex;align-items:center;gap:2rem}
 .nav a:not(.btn){
@@ -188,7 +212,11 @@ p:last-child{margin-bottom:0}
   background:var(--naranja);transition:width .28s ease;
 }
 .nav a:not(.btn):hover::after{width:100%}
-@media (max-width:52rem){.nav .oculta-movil{display:none}}
+@media (max-width:52rem){
+  .nav .oculta-movil{display:none}
+  .menu-btn{display:flex}
+}
+@media (min-width:52.01rem){.menu-movil{display:none !important}}
 @media (max-width:30rem){.marca span{display:none}}
 
 /* --- bloques inversos --------------------------------------------------- */
@@ -395,11 +423,16 @@ p:last-child{margin-bottom:0}
 <!-- ====================== CABECERA ====================== -->
 <header class="cabecera" id="cabecera">
   <div class="env">
-    <a class="marca" href="/" aria-label="Blas Ruiz — inicio">
-      <svg viewBox="0 0 394 394" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-        <path fill="#333333" d="M70.41,354c-23.73,0-43.04-19.31-43.04-43.04V83.04c0-23.73,19.31-43.04,43.04-43.04h175.21c51.76,0,94.71,41.23,95.73,91.92.33,16.22-3.54,32.27-11.19,46.42l-2.82,5.22,4.61,3.74c22.37,18.18,35.01,45.13,34.68,73.95-.59,51.14-43.52,92.75-95.69,92.75H70.41ZM88.82,298.87h177.63c21.35,0,38.73-17.38,38.73-38.73s-17.38-38.73-38.73-38.73H88.82v77.46ZM88.82,167.36h155.08c19.86,0,36.02-16.16,36.02-36.02s-16.16-36.02-36.02-36.02H88.82v72.05Z"/>
-      </svg>
-    </a>
+    <div class="cabecera__izq">
+      <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <a class="marca" href="/" aria-label="Blas Ruiz — inicio">
+        <svg viewBox="0 0 394 394" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <path fill="#333333" d="M70.41,354c-23.73,0-43.04-19.31-43.04-43.04V83.04c0-23.73,19.31-43.04,43.04-43.04h175.21c51.76,0,94.71,41.23,95.73,91.92.33,16.22-3.54,32.27-11.19,46.42l-2.82,5.22,4.61,3.74c22.37,18.18,35.01,45.13,34.68,73.95-.59,51.14-43.52,92.75-95.69,92.75H70.41ZM88.82,298.87h177.63c21.35,0,38.73-17.38,38.73-38.73s-17.38-38.73-38.73-38.73H88.82v77.46ZM88.82,167.36h155.08c19.86,0,36.02-16.16,36.02-36.02s-16.16-36.02-36.02-36.02H88.82v72.05Z"/>
+        </svg>
+      </a>
+    </div>
 
     <nav class="nav" aria-label="Navegación principal">
       <a class="oculta-movil" href="/#caso">Casos</a>
@@ -411,6 +444,13 @@ p:last-child{margin-bottom:0}
       </a>
     </nav>
   </div>
+
+  <nav class="menu-movil" id="menu-movil" aria-label="Navegación móvil">
+    <a href="/#caso">Casos</a>
+    <a href="/#servicios">Servicios</a>
+    <a href="/#bio">Sobre mí</a>
+    <a href="https://blasruiz.myportfolio.com/" target="_blank" rel="noopener">Portfolio</a>
+  </nav>
 </header>
 
 <main>
@@ -580,6 +620,26 @@ p:last-child{margin-bottom:0}
   };
   marcaScroll();
   window.addEventListener('scroll', marcaScroll, {passive:true});
+
+  /* menú móvil: botón hamburguesa junto al logo */
+  var menuBtn = document.getElementById('menu-btn');
+  var menuMovil = document.getElementById('menu-movil');
+  if (menuBtn && menuMovil) {
+    var cerrarMenu = function(){
+      menuMovil.classList.remove('abierto');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    };
+    menuBtn.addEventListener('click', function(){
+      var abierto = menuMovil.classList.toggle('abierto');
+      menuBtn.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+    });
+    menuMovil.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', cerrarMenu);
+    });
+    window.addEventListener('resize', function(){
+      if (window.matchMedia('(min-width:52.01rem)').matches) cerrarMenu();
+    });
+  }
 
   /* aparición progresiva */
   var elementos = document.querySelectorAll('.aparece');
