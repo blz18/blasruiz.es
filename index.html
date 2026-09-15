@@ -1020,8 +1020,13 @@ p:last-child{margin-bottom:0}
   }
 
   /* --- marquesina de testimonios: clona las tarjetas reales del HTML para
-     el bucle continuo, y ajusta la duración a la anchura real de la pista
-     para que la velocidad no cambie al añadir o quitar reseñas --- */
+     el bucle continuo. La duración queda fija en CSS (.testimonios__pista) —
+     a diferencia de la marquesina del hero, aquí NO se recalcula por JS:
+     tocar el `animation` por script en un elemento con overflow:hidden en el
+     padre deja el layer sin pintar en Safari/iOS (confirmado en simulador e
+     iPhone real, tanto mutando animationDuration como reseteando la
+     animación entera). Si el número de reseñas cambia mucho, ajustar el
+     34s de la regla CSS a mano. */
   var pistaTestimonios = document.getElementById('pista-testimonios');
   if (pistaTestimonios) {
     var tarjetasTestimonios = Array.prototype.slice.call(pistaTestimonios.children);
@@ -1030,12 +1035,6 @@ p:last-child{margin-bottom:0}
       clon.setAttribute('aria-hidden', 'true');
       clon.querySelectorAll('a, button').forEach(function(el){ el.setAttribute('tabindex', '-1'); });
       pistaTestimonios.appendChild(clon);
-    });
-
-    var velocidadTestimoniosPxSeg = 26;
-    requestAnimationFrame(function(){
-      var anchoMitad = pistaTestimonios.scrollWidth / 2;
-      pistaTestimonios.style.animationDuration = Math.max(anchoMitad / velocidadTestimoniosPxSeg, 16) + 's';
     });
   }
 
