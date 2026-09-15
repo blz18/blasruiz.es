@@ -24,7 +24,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Onest:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Onest:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 /* ==========================================================================
@@ -40,10 +40,12 @@
   --gris:#a3a3a3;
   --naranja:#ff8666;
   --azul:#00cfcf;
-  --verde:#71db6b;
 
   --linea:rgba(51,51,51,.14);
   --linea-inv:rgba(241,241,240,.18);
+
+  --texto:#4a4a4a;
+  --texto-sutil:#5c5c5c;
 
   --titulo:'Outfit','Trebuchet MS',system-ui,sans-serif;
   --cuerpo:'Onest',Arial,system-ui,sans-serif;
@@ -52,6 +54,15 @@
   --marco:clamp(1.25rem,5vw,5rem);
   --ancho:76rem;
   --aire:clamp(5rem,11vw,10rem);
+
+  /* retícula: proporciones de grid de 2 columnas reutilizadas en el sitio */
+  --split-a:1.15fr .85fr;  /* columna de texto más pesada — hero, caso__cab */
+  --split-b:.8fr 1.2fr;    /* columna secundaria más pesada — bio, queda__grid */
+
+  /* escala de radios */
+  --radio-sm:5rem;
+  --radio-md:1.2rem;
+  --radio-lg:1.5rem;
 
   /* rango de anchos de cada imagen de la marquesina del hero — ajustable */
   --marquesina-max:340px;
@@ -88,6 +99,7 @@ p:last-child{margin-bottom:0}
 
 .env{width:100%;max-width:var(--ancho);margin-inline:auto;padding-inline:var(--marco)}
 .seccion{padding-block:var(--aire)}
+.seccion--pegada{padding-top:0}
 .medida{max-width:38ch}
 .medida-l{max-width:52ch}
 
@@ -115,7 +127,7 @@ p:last-child{margin-bottom:0}
   background:var(--bg);color:var(--fg);
   font-family:var(--cuerpo);font-size:1rem;font-weight:500;
   letter-spacing:-.01em;line-height:1;
-  padding:1.1rem 1.6rem;border:1px solid var(--bg);border-radius:2px;
+  padding:1.1rem 1.6rem;border:1px solid var(--bg);border-radius:var(--radio-sm);
   text-decoration:none;cursor:pointer;
   transition:background .28s ease,color .28s ease,border-color .28s ease,transform .28s ease;
 }
@@ -145,10 +157,12 @@ p:last-child{margin-bottom:0}
 :where(a,button):focus-visible{
   outline:2px solid var(--naranja);
   outline-offset:3px;
-  border-radius:2px;
+  border-radius:var(--radio-sm);
 }
 
-/* --- cabecera ----------------------------------------------------------- */
+/* --- cabecera -------------------------------------------------------------
+   El CTA .btn de la nav apunta a #contacto aquí (home tiene esa sección);
+   en las páginas de caso, que no la tienen, apunta directo a Calendly. */
 .cabecera{
   position:sticky;top:0;z-index:60;
   background:rgba(241,241,240,.82);
@@ -185,7 +199,7 @@ p:last-child{margin-bottom:0}
 .hero .env{position:relative;z-index:2}
 
 .hero__cuerpo{
-  display:grid;grid-template-columns:1.15fr .85fr;
+  display:grid;grid-template-columns:var(--split-a);
   gap:clamp(2rem,5vw,4rem);align-items:center;
   position:relative;
 }
@@ -208,7 +222,7 @@ p:last-child{margin-bottom:0}
 
 .hero__sub{
   font-size:clamp(1.1rem,1rem + .6vw,1.45rem);
-  line-height:1.5;max-width:44ch;color:#4a4a4a;font-weight:300;
+  line-height:1.5;max-width:44ch;color:var(--texto);font-weight:300;
   margin-bottom:clamp(2.25rem,4vw,3rem);
 }
 .hero__sub b{font-weight:500;color:var(--tinta)}
@@ -266,13 +280,17 @@ p:last-child{margin-bottom:0}
   display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));
   gap:0;
 }
+/* mismo patrón (etiqueta + valor, separador vertical entre pares) que
+   .sector aquí abajo y .ficha__item en las páginas de caso — implementado
+   por separado a propósito: dt/dd por semántica de lista de definición,
+   ritmo vertical propio por densidad de contenido */
 .credencial{padding:2.25rem 0 2.25rem 1.75rem;border-left:1px solid var(--linea)}
 .credencial:first-child{padding-left:0;border-left:0}
 .credencial dt{
   font-family:var(--titulo);font-size:clamp(1.9rem,1.4rem + 1.4vw,2.7rem);
   font-weight:500;letter-spacing:-.03em;line-height:1;margin-bottom:.5rem;
 }
-.credencial dd{margin:0;font-size:.9rem;color:#5c5c5c;line-height:1.4;max-width:22ch}
+.credencial dd{margin:0;font-size:.9rem;color:var(--texto-sutil);line-height:1.4;max-width:22ch}
 @media (max-width:44rem){
   .credenciales .env{grid-template-columns:1fr 1fr}
   .credencial{padding:1.5rem 0 1.5rem 1.25rem}
@@ -329,7 +347,7 @@ p:last-child{margin-bottom:0}
 }
 @media (max-width:44rem){.comparativa{grid-template-columns:1fr}}
 .opcion{
-  border:1px solid var(--linea);border-radius:3px;
+  border:1px solid var(--linea);border-radius:var(--radio-md);
   padding:clamp(1.75rem,3vw,2.5rem);background:var(--papel-sutil);
 }
 .opcion--destacada{
@@ -345,14 +363,14 @@ p:last-child{margin-bottom:0}
   color:var(--gris);font-weight:400;
 }
 .opcion--destacada h3 span{color:var(--naranja)}
-.opcion p{font-size:1rem;color:#4a4a4a}
+.opcion p{font-size:1rem;color:var(--texto)}
 .opcion--destacada p{color:var(--tinta)}
 .opcion ul{margin:1rem 0 0;padding:0;list-style:none;font-size:.95rem}
-.opcion li{padding-left:1.3rem;position:relative;margin-bottom:.45rem;color:#4a4a4a}
+.opcion li{padding-left:1.3rem;position:relative;margin-bottom:.45rem;color:var(--texto)}
 .opcion li::before{content:"";position:absolute;left:0;top:.62em;width:.55rem;height:1px;background:var(--naranja)}
 
 .diferencia__matiz{
-  max-width:56ch;color:#4a4a4a;
+  max-width:56ch;color:var(--texto);
   margin-bottom:clamp(2.5rem,5vw,3.5rem);
 }
 .diferencia__matiz b{color:var(--tinta);font-weight:500}
@@ -367,13 +385,13 @@ p:last-child{margin-bottom:0}
 /* --- caso ancla --------------------------------------------------------- */
 .caso{background:var(--papel-sutil);border-block:1px solid var(--linea)}
 .caso__cab{
-  display:grid;grid-template-columns:1.15fr .85fr;
+  display:grid;grid-template-columns:var(--split-a);
   gap:clamp(2rem,5vw,4rem);align-items:end;
   margin-bottom:clamp(3rem,6vw,4.5rem);
 }
 @media (max-width:52rem){.caso__cab{grid-template-columns:1fr;align-items:start}}
 .caso h2{font-size:clamp(2rem,1.5rem + 2.2vw,3.4rem);max-width:15ch}
-.caso__intro{color:#4a4a4a;max-width:42ch}
+.caso__intro{color:var(--texto);max-width:42ch}
 
 .cifras{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));
@@ -386,7 +404,7 @@ p:last-child{margin-bottom:0}
   font-size:clamp(2.2rem,1.6rem + 2vw,3.4rem);
   letter-spacing:-.04em;line-height:1;margin-bottom:.6rem;
 }
-.cifra span{font-size:.88rem;color:#5c5c5c;line-height:1.4;display:block;max-width:20ch}
+.cifra span{font-size:.88rem;color:var(--texto-sutil);line-height:1.4;display:block;max-width:20ch}
 .cifra--hallazgo b{color:var(--naranja)}
 @media (max-width:44rem){
   .cifra,.cifra + .cifra{padding:1.5rem 0;padding-left:0;border-left:0;border-bottom:1px solid var(--linea)}
@@ -397,17 +415,17 @@ p:last-child{margin-bottom:0}
   padding-top:clamp(2rem,4vw,2.5rem);border-top:1px solid var(--linea);
 }
 @media (max-width:52rem){.caso__hallazgo{grid-template-columns:1fr;gap:1.75rem}}
-.caso__hallazgo p{font-size:1.05rem;color:#4a4a4a;max-width:52ch}
+.caso__hallazgo p{font-size:1.05rem;color:var(--texto);max-width:52ch}
 
 /* --- servicios ---------------------------------------------------------- */
 .servicios h2{
   font-size:clamp(2rem,1.5rem + 2.2vw,3.4rem);
   max-width:14ch;margin-bottom:1.25rem;
 }
-.servicios__intro{color:#4a4a4a;max-width:44ch;margin-bottom:clamp(3rem,6vw,4.5rem)}
+.servicios__intro{color:var(--texto);max-width:44ch;margin-bottom:clamp(3rem,6vw,4.5rem)}
 .rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:clamp(1.25rem,2.5vw,1.75rem)}
 .servicio{
-  border:1px solid var(--linea);border-radius:3px;
+  border:1px solid var(--linea);border-radius:var(--radio-md);
   padding:clamp(1.75rem,3vw,2.25rem);
   display:flex;flex-direction:column;gap:1rem;
   background:var(--papel);
@@ -419,7 +437,7 @@ p:last-child{margin-bottom:0}
   color:var(--gris);
 }
 .servicio h3{font-size:1.32rem;font-weight:600;letter-spacing:-.02em;line-height:1.2}
-.servicio p{font-size:.98rem;color:#4a4a4a;flex:1}
+.servicio p{font-size:.98rem;color:var(--texto);flex:1}
 .servicio .enlace{font-size:.92rem;align-self:flex-start}
 .servicio--acento{border-color:var(--tinta)}
 .servicio--acento .servicio__n{color:var(--naranja)}
@@ -427,29 +445,29 @@ p:last-child{margin-bottom:0}
 /* --- quién soy ---------------------------------------------------------- */
 .bio{background:var(--papel-sutil);border-block:1px solid var(--linea)}
 .bio__grid{
-  display:grid;grid-template-columns:.8fr 1.2fr;
+  display:grid;grid-template-columns:var(--split-b);
   gap:clamp(2rem,6vw,5rem);align-items:start;
 }
 @media (max-width:52rem){.bio__grid{grid-template-columns:1fr}}
 .bio h2{font-size:clamp(1.9rem,1.4rem + 2.1vw,3rem);margin-bottom:1.75rem}
-.bio__texto p:not(.rotulo){color:#4a4a4a;max-width:54ch}
+.bio__texto p:not(.rotulo){color:var(--texto);max-width:54ch}
 .bio__texto p b{color:var(--tinta);font-weight:500}
 .retrato{
-  aspect-ratio:4/5;border:1px solid var(--linea);border-radius:3px;
+  aspect-ratio:1473/1963;
   overflow:hidden;background:var(--papel-sutil);
 }
 .retrato img{
-  width:100%;height:100%;object-fit:cover;object-position:center -118%;
-  transform:scale(1.4);
+  width:100%;height:100%;object-fit:cover;object-position:center;
 }
 
 /* --- clientes ----------------------------------------------------------- */
 .clientes h2{font-size:clamp(1.6rem,1.3rem + 1.4vw,2.3rem);max-width:22ch;margin-bottom:clamp(2.5rem,5vw,3.5rem)}
 .sectores{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:0;border-top:1px solid var(--linea)}
-.sector{padding:1.75rem 1.5rem 1.75rem 0;border-bottom:1px solid var(--linea)}
+/* mismo patrón que .credencial (arriba) y .ficha__item (páginas de caso) */
+.sector{padding:1.75rem 1rem 1.75rem 0;border-bottom:1px solid var(--linea)}
 .sector + .sector{padding-left:1.5rem;border-left:1px solid var(--linea)}
 .sector b{display:block;font-family:var(--titulo);font-weight:500;font-size:1.05rem;letter-spacing:-.015em;margin-bottom:.4rem}
-.sector span{font-size:.88rem;color:#5c5c5c}
+.sector span{font-size:.88rem;color:var(--texto-sutil)}
 @media (max-width:44rem){.sector,.sector + .sector{padding:1.4rem 0;padding-left:0;border-left:0}}
 
 /* --- testimonios (subsección dentro de "clientes") ------------------------
@@ -459,9 +477,28 @@ p:last-child{margin-bottom:0}
   font-size:clamp(1.4rem,1.15rem + 1.2vw,1.9rem);
   margin-top:clamp(3rem,6vw,4.5rem);margin-bottom:clamp(2rem,4vw,2.75rem);
 }
-.testimonios__rejilla{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:clamp(1.25rem,2.5vw,1.75rem)}
+/* marquesina horizontal: se desliza de izquierda a derecha, en bucle continuo.
+   La pista contiene las tarjetas reales una sola vez en el HTML — el script
+   clona ese bloque para el bucle; para añadir una reseña nueva basta con
+   sumar un <article class="testimonio"> más dentro de #pista-testimonios,
+   sin tocar CSS ni JS. */
+.testimonios__marquesina{
+  position:relative;overflow:hidden;
+  margin-inline:calc(var(--marco) * -1);padding-inline:var(--marco);
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 6%,#000 94%,transparent 100%);
+  mask-image:linear-gradient(to right,transparent 0,#000 6%,#000 94%,transparent 100%);
+}
+.testimonios__pista{
+  display:flex;gap:clamp(1.25rem,2.5vw,1.75rem);width:max-content;
+  will-change:transform;
+  animation:testimonios-fluye 34s linear infinite;
+}
+.testimonios__marquesina:hover .testimonios__pista,
+.testimonios__marquesina:focus-within .testimonios__pista{animation-play-state:paused}
+@keyframes testimonios-fluye{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 .testimonio{
-  background:#fff;border-radius:1.5rem;
+  flex:0 0 clamp(18rem,30vw,23rem);
+  background:#fff;border-radius:var(--radio-lg);
   padding:clamp(1.75rem,3vw,2.25rem);
   display:flex;flex-direction:column;gap:1.5rem;
   box-shadow:0 4px 20px rgba(51,51,51,.06);
@@ -490,7 +527,7 @@ p:last-child{margin-bottom:0}
   display:flex;align-items:center;justify-content:center;
   font-family:var(--titulo);font-weight:500;font-size:.95rem;color:var(--gris);
 }
-.testimonio footer{font-size:.88rem;color:#5c5c5c}
+.testimonio footer{font-size:.88rem;color:var(--texto-sutil)}
 .testimonio footer b{color:var(--tinta);font-weight:500}
 
 /* --- cierre ------------------------------------------------------------- */
@@ -512,7 +549,7 @@ p:last-child{margin-bottom:0}
 .pie .env{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:space-between;align-items:center}
 .pie small{font-size:.85rem;color:var(--gris)}
 .pie nav{display:flex;gap:1.5rem;flex-wrap:wrap}
-.pie nav a{font-size:.85rem;text-decoration:none;color:#5c5c5c}
+.pie nav a{font-size:.85rem;text-decoration:none;color:var(--texto-sutil)}
 .pie nav a:hover{color:var(--tinta)}
 
 /* --- aparición ---------------------------------------------------------- */
@@ -757,37 +794,51 @@ p:last-child{margin-bottom:0}
 
       <h2 class="testimonios__titulo aparece">Lo que dicen mis clientes</h2>
 
-      <div class="testimonios__rejilla">
-        <article class="testimonio aparece">
-          <span class="testimonio__marca">Equipamiento y energía</span>
-          <ul class="testimonio__lista">
-            <li>Tiene el ojo y el criterio para entender lo que buscamos y darnos un resultado atractivo y diferenciado — mucho más allá de lo que saca cualquier plataforma o agente de IA.</li>
-            <li>Velocidad.</li>
-            <li>La guía de estilos quedó como un documento vivo que ya usamos con nuestras propias herramientas de IA, como Claude Design.</li>
-          </ul>
-          <div class="testimonio__firma">
-            <span class="testimonio__inicial" aria-hidden="true">V</span>
-            <footer><b>Ventura Pobre</b> — Trimergy</footer>
-          </div>
-        </article>
+      <div class="testimonios__marquesina aparece">
+        <!-- Tarjetas reales — fuente única, el script las clona para el bucle.
+             Para añadir una reseña nueva: pega aquí un <article class="testimonio">
+             más, con el mismo formato que las de abajo. -->
+        <div class="testimonios__pista" id="pista-testimonios">
+          <article class="testimonio">
+            <span class="testimonio__marca">Equipamiento y energía</span>
+            <ul class="testimonio__lista">
+              <li>Tiene el ojo y el criterio para entender lo que buscamos y darnos un resultado atractivo y diferenciado — mucho más allá de lo que saca cualquier plataforma o agente de IA.</li>
+              <li>Velocidad.</li>
+              <li>La guía de estilos quedó como un documento vivo que ya usamos con nuestras propias herramientas de IA, como Claude Design.</li>
+            </ul>
+            <div class="testimonio__firma">
+              <span class="testimonio__inicial" aria-hidden="true">V</span>
+              <footer><b>Ventura Pobre</b> — Trimergy</footer>
+            </div>
+          </article>
 
-        <article class="testimonio aparece">
-          <span class="testimonio__marca">Distribución industrial</span>
-          <p>«Nos ayudó mucho a renovar nuestra imagen corporativa: teníamos una imagen ya muy antigua y con pocas instrucciones supo dar con la necesidad de nuestra nueva imagen, mucho más moderna y sencilla. Cada consulta o modificación que hemos necesitado nos ha dado una respuesta muy rápida.»</p>
-          <div class="testimonio__firma">
-            <span class="testimonio__inicial" aria-hidden="true">T</span>
-            <footer><b>Toñi</b> — RIA Recambios Industriales de Albacete</footer>
-          </div>
-        </article>
+          <article class="testimonio">
+            <span class="testimonio__marca">Distribución industrial</span>
+            <p>«Nos ayudó mucho a renovar nuestra imagen corporativa: teníamos una imagen ya muy antigua y con pocas instrucciones supo dar con la necesidad de nuestra nueva imagen, mucho más moderna y sencilla. Cada consulta o modificación que hemos necesitado nos ha dado una respuesta muy rápida.»</p>
+            <div class="testimonio__firma">
+              <span class="testimonio__inicial" aria-hidden="true">T</span>
+              <footer><b>Toñi</b> — RIA Recambios Industriales de Albacete</footer>
+            </div>
+          </article>
 
-        <article class="testimonio aparece">
-          <span class="testimonio__marca">Denominación de origen</span>
-          <p>«Incluso trabajando a contrarreloj, el resultado es impecable. Rapidez, eficiencia y una comunicación fácil en todo momento. ¡Muy recomendable!»</p>
-          <div class="testimonio__firma">
-            <span class="testimonio__inicial" aria-hidden="true">L</span>
-            <footer><b>Lorena</b> — DOP Queso Manchego</footer>
-          </div>
-        </article>
+          <article class="testimonio">
+            <span class="testimonio__marca">Denominación de origen</span>
+            <p>«Incluso trabajando a contrarreloj, el resultado es impecable. Rapidez, eficiencia y una comunicación fácil en todo momento. ¡Muy recomendable!»</p>
+            <div class="testimonio__firma">
+              <span class="testimonio__inicial" aria-hidden="true">L</span>
+              <footer><b>Lorena</b> — DOP Queso Manchego</footer>
+            </div>
+          </article>
+
+          <article class="testimonio">
+            <span class="testimonio__marca">Transporte y logística</span>
+            <p>«Necesitábamos una web que reflejara de verdad la dimensión, los valores y la evolución de Ecotrans. Blas supo entender nuestra empresa y convertir nuestras ideas en una página moderna, profesional y funcional. No se limitó a diseñar una web: mejoró nuestra imagen digital y nos acompañó durante todo el proceso con cercanía, agilidad y soluciones.»</p>
+            <div class="testimonio__firma">
+              <span class="testimonio__inicial" aria-hidden="true">V</span>
+              <footer><b>Virginio Ojeda</b> — Ecotrans</footer>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
   </section>
@@ -904,6 +955,26 @@ p:last-child{margin-bottom:0}
 
     construirColumna(pistaSube, imgColSube, 24);
     construirColumna(document.getElementById('pista-baja'), imgColBaja, 20);
+  }
+
+  /* --- marquesina de testimonios: clona las tarjetas reales del HTML para
+     el bucle continuo, y ajusta la duración a la anchura real de la pista
+     para que la velocidad no cambie al añadir o quitar reseñas --- */
+  var pistaTestimonios = document.getElementById('pista-testimonios');
+  if (pistaTestimonios) {
+    var tarjetasTestimonios = Array.prototype.slice.call(pistaTestimonios.children);
+    tarjetasTestimonios.forEach(function(tarjeta){
+      var clon = tarjeta.cloneNode(true);
+      clon.setAttribute('aria-hidden', 'true');
+      clon.querySelectorAll('a, button').forEach(function(el){ el.setAttribute('tabindex', '-1'); });
+      pistaTestimonios.appendChild(clon);
+    });
+
+    var velocidadTestimoniosPxSeg = 26;
+    requestAnimationFrame(function(){
+      var anchoMitad = pistaTestimonios.scrollWidth / 2;
+      pistaTestimonios.style.animationDuration = Math.max(anchoMitad / velocidadTestimoniosPxSeg, 16) + 's';
+    });
   }
 
   /* aparición progresiva */
