@@ -742,7 +742,7 @@ p:last-child{margin-bottom:0}
       var pantalla=new THREE.Mesh(new THREE.BoxGeometry(.38,.2,.035),new THREE.MeshBasicMaterial({color:0x00cfcf,transparent:true,opacity:.82}));pantalla.position.set(0,-1.01,.82);
       base.add(pie,tapa,aro,pantalla);g.add(base);
 
-      /* Peana fija; yugo y cabeza comparten este pivote de orientación. */
+      /* Peana fija; el yugo hace pan sobre Y y la cabeza inclina sobre X. */
       var cabezaRig=new THREE.Group();cabezaRig.position.y=.22;
       var yugo=new THREE.Group();
       var brazoIzq=new THREE.Mesh(new THREE.BoxGeometry(.2,1.72,.3),negro);brazoIzq.position.set(-.78,-.70,0);
@@ -788,7 +788,7 @@ p:last-child{margin-bottom:0}
       var foco=crearFoco(THREE);foco.scale.setScalar(.72);foco.position.set(7.1,-.22,-4.2);mundo.add(foco);
       var cabeza=foco.userData.cabeza;
       var grupoApunte=foco.userData.aimGroup;
-      var ancho=1,alto=1,raf=0,tiempo=0,puntoPantalla=new THREE.Vector3(),direccionPantalla=new THREE.Vector3(),puntoRayo=new THREE.Vector3(),posicionCabeza=new THREE.Vector3(),puntoMira=new THREE.Vector3();
+      var ancho=1,alto=1,raf=0,tiempo=0,puntoPantalla=new THREE.Vector3(),direccionPantalla=new THREE.Vector3(),puntoRayo=new THREE.Vector3(),posicionCabeza=new THREE.Vector3(),puntoMira=new THREE.Vector3(),miraLocal=new THREE.Vector3();
       function ajustar(){var r=escena.getBoundingClientRect();ancho=Math.max(1,r.width);alto=Math.max(1,r.height);renderer.setSize(ancho,alto,false);camara.aspect=ancho/alto;camara.updateProjectionMatrix();foco.position.x=Math.max(2.9,Math.min(7.1,camara.aspect*3.65));}
       function render(){
         tiempo+=reducido?0:.004;
@@ -802,8 +802,17 @@ p:last-child{margin-bottom:0}
         /* lookAt() de un objeto orienta +Z hacia el objetivo, mientras que
            el foco emite por -Z. Reflejamos el punto para que ambos coincidan. */
         puntoMira.copy(posicionCabeza).multiplyScalar(2).sub(puntoRayo);
+        /* El yugo solo gira horizontalmente. El lookAt calcula el azimut,
+           pero anulamos su cabeceo y alabeo para no inclinar las patas. */
         grupoApunte.lookAt(puntoMira);
-        cabeza.rotation.z=Math.sin(tiempo*.7)*.012;
+        grupoApunte.rotation.x=0;
+        grupoApunte.rotation.z=0;
+        /* La cabeza conserva ese giro Y y añade únicamente la inclinación
+           vertical necesaria para que el haz apunte al cursor. */
+        miraLocal.copy(puntoMira);
+        grupoApunte.worldToLocal(miraLocal);
+        miraLocal.sub(cabeza.position);
+        cabeza.rotation.set(Math.atan2(-miraLocal.y,miraLocal.z),0,0);
         etiquetas.forEach(function(etiqueta){
           var dx=actual.x-parseFloat(etiqueta.dataset.miraX),dy=actual.y-parseFloat(etiqueta.dataset.miraY);
           var revelado=Math.max(0,1-Math.hypot(dx,dy)/.38);
