@@ -258,18 +258,18 @@ p:last-child{margin-bottom:0}
 .caso-hero__texto{position:relative;z-index:2;max-width:47rem;padding-block:clamp(1.5rem,4vh,3rem) clamp(2rem,5vh,4rem)}
 .hero-escena{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 .hero-escena::before{
-  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
   background:linear-gradient(90deg,var(--papel) 0%,var(--papel) 34%,rgba(241,241,240,.96) 48%,rgba(241,241,240,.42) 63%,transparent 82%);
 }
 .hero-escena::after{
-  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.3;
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.3;
   background-image:radial-gradient(circle,rgba(0,207,207,.5) 1px,transparent 1.4px);background-size:9px 9px;
   -webkit-mask-image:radial-gradient(ellipse 50% 68% at 77% 50%,#000 0%,rgba(0,0,0,.78) 45%,transparent 80%);
   mask-image:radial-gradient(ellipse 50% 68% at 77% 50%,#000 0%,rgba(0,0,0,.78) 45%,transparent 80%);
 }
-#hero-escena-canvas{display:block;width:100%;height:100%;position:absolute;inset:0}
-.hero-escena__nota{position:absolute;right:4%;bottom:8%;z-index:2;font-family:var(--mono),var(--cuerpo);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gris);opacity:.75}
-.hero-escena__etiquetas{position:absolute;inset:0;z-index:2;pointer-events:none}
+#hero-escena-canvas{display:block;width:100%;height:100%;position:absolute;inset:0;z-index:1}
+.hero-escena__nota{position:absolute;right:4%;bottom:8%;z-index:3;font-family:var(--mono),var(--cuerpo);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gris);opacity:.75}
+.hero-escena__etiquetas{position:absolute;inset:0;z-index:3;pointer-events:none}
 .hero-escena__etiqueta{
   position:absolute;transform:translate(-50%,-50%) scale(.92);font-family:var(--mono),var(--cuerpo);
   font-size:clamp(.85rem,1.1vw,1.15rem);letter-spacing:.12em;text-transform:uppercase;color:var(--tinta);
@@ -742,13 +742,15 @@ p:last-child{margin-bottom:0}
       var pantalla=new THREE.Mesh(new THREE.BoxGeometry(.38,.2,.035),new THREE.MeshBasicMaterial({color:0x00cfcf,transparent:true,opacity:.82}));pantalla.position.set(0,-1.01,.82);
       base.add(pie,tapa,aro,pantalla);g.add(base);
 
+      /* Peana fija; yugo y cabeza comparten este pivote de orientación. */
+      var cabezaRig=new THREE.Group();cabezaRig.position.y=.22;
       var yugo=new THREE.Group();
-      var brazoIzq=new THREE.Mesh(new THREE.BoxGeometry(.2,1.72,.3),negro);brazoIzq.position.set(-.78,-.48,0);
+      var brazoIzq=new THREE.Mesh(new THREE.BoxGeometry(.2,1.72,.3),negro);brazoIzq.position.set(-.78,-.70,0);
       var brazoDer=brazoIzq.clone();brazoDer.position.x=.78;
-      var ejeIzq=new THREE.Mesh(new THREE.CylinderGeometry(.13,.13,.34,20),goma);ejeIzq.rotation.z=Math.PI/2;ejeIzq.position.set(-.78,.22,0);
-      var ejeDer=ejeIzq.clone();ejeDer.position.x=.78;yugo.add(brazoIzq,brazoDer,ejeIzq,ejeDer);g.add(yugo);
+      var ejeIzq=new THREE.Mesh(new THREE.CylinderGeometry(.13,.13,.34,20),goma);ejeIzq.rotation.z=Math.PI/2;ejeIzq.position.set(-.78,0,0);
+      var ejeDer=ejeIzq.clone();ejeDer.position.x=.78;yugo.add(brazoIzq,brazoDer,ejeIzq,ejeDer);cabezaRig.add(yugo);
 
-      var cabeza=new THREE.Group();cabeza.position.y=.28;
+      var cabeza=new THREE.Group();cabeza.position.y=.06;
       var cuerpo=new THREE.Mesh(new THREE.CylinderGeometry(.73,.88,1.42,32),negro);cuerpo.rotation.x=Math.PI/2;cuerpo.position.z=.04;
       var trasera=new THREE.Mesh(new THREE.CylinderGeometry(.58,.65,.16,32),goma);trasera.rotation.x=Math.PI/2;trasera.position.z=.76;
       var aroFrontal=new THREE.Mesh(new THREE.TorusGeometry(.68,.075,12,32),negroMate);aroFrontal.position.z=-.68;
@@ -768,8 +770,8 @@ p:last-child{margin-bottom:0}
       var hazMedio=new THREE.Mesh(new THREE.ConeGeometry(1.08,4.65,32,4,true),materialHazMedio);hazMedio.rotation.x=Math.PI/2;hazMedio.position.z=-2.32;
       var hazInterior=new THREE.Mesh(new THREE.ConeGeometry(.58,4.45,24,4,true),materialHazInterior);hazInterior.rotation.x=Math.PI/2;hazInterior.position.z=-2.22;
       var hazHalo=new THREE.Mesh(new THREE.ConeGeometry(2.25,5.05,48,8,true),materialHazHalo);hazHalo.rotation.x=Math.PI/2;hazHalo.position.z=-2.52;
-      hazRaiz.add(hazHalo,haz,hazMedio,hazInterior);cabeza.add(hazRaiz);g.add(cabeza);
-      g.userData.cabeza=cabeza;g.userData.hazRaiz=hazRaiz;return g;
+      hazRaiz.add(hazHalo,haz,hazMedio,hazInterior);cabeza.add(hazRaiz);cabezaRig.add(cabeza);g.add(cabezaRig);
+      g.userData.cabeza=cabeza;g.userData.aimGroup=cabezaRig;g.userData.hazRaiz=hazRaiz;return g;
     }
 
     import(urlThree).then(function(modulo){
@@ -785,6 +787,7 @@ p:last-child{margin-bottom:0}
          desde el fondo, la cámara ve la lente y no la parte posterior. */
       var foco=crearFoco(THREE);foco.scale.setScalar(.72);foco.position.set(7.1,-.22,-4.2);mundo.add(foco);
       var cabeza=foco.userData.cabeza;
+      var grupoApunte=foco.userData.aimGroup;
       var ancho=1,alto=1,raf=0,tiempo=0,puntoPantalla=new THREE.Vector3(),direccionPantalla=new THREE.Vector3(),puntoRayo=new THREE.Vector3(),posicionCabeza=new THREE.Vector3(),puntoMira=new THREE.Vector3();
       function ajustar(){var r=escena.getBoundingClientRect();ancho=Math.max(1,r.width);alto=Math.max(1,r.height);renderer.setSize(ancho,alto,false);camara.aspect=ancho/alto;camara.updateProjectionMatrix();foco.position.x=Math.max(2.9,Math.min(7.1,camara.aspect*3.65));}
       function render(){
@@ -799,9 +802,8 @@ p:last-child{margin-bottom:0}
         /* lookAt() de un objeto orienta +Z hacia el objetivo, mientras que
            el foco emite por -Z. Reflejamos el punto para que ambos coincidan. */
         puntoMira.copy(posicionCabeza).multiplyScalar(2).sub(puntoRayo);
-        cabeza.lookAt(puntoMira);
+        grupoApunte.lookAt(puntoMira);
         cabeza.rotation.z=Math.sin(tiempo*.7)*.012;
-        foco.rotation.y=Math.sin(tiempo)*.012;
         etiquetas.forEach(function(etiqueta){
           var dx=actual.x-parseFloat(etiqueta.dataset.miraX),dy=actual.y-parseFloat(etiqueta.dataset.miraY);
           var revelado=Math.max(0,1-Math.hypot(dx,dy)/.38);
