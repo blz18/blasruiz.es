@@ -277,7 +277,7 @@ p:last-child{margin-bottom:0}
 }
 
 /* --- capítulos: índice de navegación + panel de contenido activo ---------
-   Componente nuevo (ver también sistema-diseno.html). Sustituye al scroll
+   Componente nuevo (ver también 01_ABOUT ME/referencia/design-system/design-system.html). Sustituye al scroll
    lineal por capítulos 01–09 que se activan uno a uno: índice numerado a
    la derecha en desktop, contenido del capítulo activo a la izquierda.
    El cierre (antes "10") queda fuera del índice — sigue siendo scroll
@@ -298,11 +298,9 @@ p:last-child{margin-bottom:0}
 .capitulo-panel__lead{color:var(--texto);max-width:56ch;font-size:clamp(1.02rem,1rem + .3vw,1.2rem);font-weight:300}
 .capitulo-panel__lead b{color:var(--tinta);font-weight:500}
 .capitulo-panel__lead + .capitulo-panel__lead{margin-top:1em}
-.capitulo-panel[data-capitulo="07"]{
-  background:var(--tinta);color:var(--papel);
+.capitulo-panel.inverso{
   padding:clamp(1.75rem,4vw,2.5rem);border-radius:var(--radio-md);
 }
-.capitulo-panel[data-capitulo="07"] h2{color:var(--papel)}
 
 /* índice lateral */
 .capitulos-nav{position:sticky;top:6.5rem}

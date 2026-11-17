@@ -288,7 +288,6 @@ p:last-child{margin-bottom:0}
   width:var(--w,220px);
   border:1px solid var(--linea);border-radius:4px;
   background:var(--papel-sutil);
-  box-shadow:0 6px 16px rgba(51,51,51,.07);
   flex:none;overflow:hidden;
   display:block;object-fit:cover;
 }
@@ -317,7 +316,7 @@ p:last-child{margin-bottom:0}
 .credencial:first-child{padding-left:0;border-left:0}
 .credencial dt{
   font-family:var(--titulo);font-size:clamp(1.9rem,1.4rem + 1.4vw,2.7rem);
-  font-weight:500;letter-spacing:-.03em;line-height:1;margin-bottom:.5rem;
+  font-weight:600;letter-spacing:-.03em;line-height:1;margin-bottom:.5rem;
 }
 .credencial dd{margin:0;font-size:.9rem;color:var(--texto-sutil);line-height:1.4;max-width:22ch}
 @media (max-width:44rem){
@@ -429,7 +428,7 @@ p:last-child{margin-bottom:0}
 .cifra{padding:2rem 1.5rem 2rem 0}
 .cifra + .cifra{padding-left:1.5rem;border-left:1px solid var(--linea)}
 .cifra b{
-  display:block;font-family:var(--titulo);font-weight:500;
+  display:block;font-family:var(--titulo);font-weight:600;
   font-size:clamp(2.2rem,1.6rem + 2vw,3.4rem);
   letter-spacing:-.04em;line-height:1;margin-bottom:.6rem;
 }
@@ -458,9 +457,9 @@ p:last-child{margin-bottom:0}
   padding:clamp(1.75rem,3vw,2.25rem);
   display:flex;flex-direction:column;gap:1rem;
   background:var(--papel);
-  transition:border-color .3s ease,transform .3s ease,box-shadow .3s ease;
+  transition:border-color .3s ease,transform .3s ease;
 }
-.servicio:hover{border-color:var(--tinta);transform:translateY(-3px);box-shadow:0 12px 30px rgba(51,51,51,.07)}
+.servicio:hover{border-color:var(--tinta);transform:translateY(-3px)}
 .servicio__n{
   font-family:var(--mono),var(--cuerpo);font-size:.72rem;letter-spacing:.18em;
   color:var(--gris);
@@ -527,13 +526,12 @@ p:last-child{margin-bottom:0}
 @keyframes testimonios-fluye{from{transform:translateX(-50%)}to{transform:translateX(0)}}
 .testimonio{
   flex:0 0 clamp(18rem,30vw,23rem);
-  background:#fff;border-radius:var(--radio-lg);
+  background:#fff;border:1px solid var(--linea);border-radius:var(--radio-lg);
   padding:clamp(1.75rem,3vw,2.25rem);
   display:flex;flex-direction:column;gap:1.5rem;
-  box-shadow:0 4px 20px rgba(51,51,51,.06);
-  transition:transform .3s ease,box-shadow .3s ease;
+  transition:transform .3s ease,border-color .3s ease;
 }
-.testimonio:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(51,51,51,.12)}
+.testimonio:hover{transform:translateY(-4px);border-color:var(--tinta)}
 .testimonio p{
   font-family:var(--titulo);font-weight:300;
   font-size:1.05rem;line-height:1.5;letter-spacing:-.01em;
