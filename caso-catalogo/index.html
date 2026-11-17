@@ -29,7 +29,7 @@
 <style>
 /* ==========================================================================
    blasruiz.es — caso de estudio · catálogo industrial
-   Marca: 01_ABOUT ME/referencia/brand-blas.md
+   Marca: 01_ABOUT ME/referencia/design-system/brand-blas.md
    Sistema visual compartido con index.html
    ========================================================================== */
 
@@ -88,12 +88,13 @@ a{color:inherit}
 
 h1,h2,h3,h4{
   font-family:var(--titulo);
-  font-weight:500;
+  font-weight:600;
   line-height:1.06;
   letter-spacing:-.028em;
   margin:0;
   text-wrap:balance;
 }
+h4{font-weight:500}
 p{margin:0 0 1.15em}
 p:last-child{margin-bottom:0}
 
@@ -178,8 +179,6 @@ p:last-child{margin-bottom:0}
 .cabecera__izq{display:flex;align-items:center;gap:.65rem}
 .marca{display:flex;align-items:center;gap:.85rem;text-decoration:none}
 .marca svg{width:26px;height:26px;flex:none}
-.marca b{font-family:var(--titulo);font-size:1.06rem;font-weight:600;letter-spacing:-.02em}
-.marca span{color:var(--gris);font-size:1.06rem;font-weight:300;letter-spacing:-.02em;font-family:var(--titulo)}
 
 .menu-btn{
   display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;
@@ -219,7 +218,6 @@ p:last-child{margin-bottom:0}
   .menu-btn{display:flex}
 }
 @media (min-width:52.01rem){.menu-movil{display:none !important}}
-@media (max-width:30rem){.marca span{display:none}}
 
 /* --- bloques inversos --------------------------------------------------- */
 .inverso{background:var(--tinta);color:var(--papel)}
@@ -288,7 +286,7 @@ p:last-child{margin-bottom:0}
 .punto{width:6px;height:6px;border-radius:50%;background:var(--naranja);flex:none}
 .caso-hero h1{
   font-size:clamp(2.4rem,1.4rem + 4.4vw,4.6rem);
-  font-weight:500;max-width:17ch;margin-bottom:clamp(1.5rem,3vw,2.1rem);
+  font-weight:600;max-width:17ch;margin-bottom:clamp(1.5rem,3vw,2.1rem);
 }
 .caso-hero__intro{
   font-size:clamp(1.1rem,1rem + .55vw,1.4rem);line-height:1.5;
@@ -339,7 +337,7 @@ p:last-child{margin-bottom:0}
   padding:clamp(2rem,4vw,2.75rem) 0;border-bottom:1px solid var(--linea);
 }
 .paso__n{font-family:var(--mono),var(--cuerpo);font-size:.72rem;letter-spacing:.18em;color:var(--naranja);padding-top:.45rem;white-space:nowrap}
-.paso h3{font-size:clamp(1.3rem,1.1rem + .8vw,1.8rem);font-weight:500;letter-spacing:-.02em;margin-bottom:.85rem;max-width:26ch}
+.paso h3{font-size:clamp(1.3rem,1.1rem + .8vw,1.8rem);font-weight:600;letter-spacing:-.02em;margin-bottom:.85rem;max-width:26ch}
 .paso p{color:var(--texto);max-width:58ch;font-size:1.02rem}
 .paso p:not(:last-child){margin-bottom:.9em}
 .paso p b{color:var(--tinta);font-weight:500}
